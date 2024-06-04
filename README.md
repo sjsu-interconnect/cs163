@@ -7,4 +7,4 @@
 - [src](src/) contains all source codes used in this project
   - [src/dash](src/webpage/) contains all files related to your webpage
   - [src/analysis](src/analysis/) contains all files related to data analysis and visualization
-- [doc](doc/) contains all documents, including proposal, analysis and visualization plans, analysis outcome presentation, and final presentation
+- [docs](docs/) contains all documents, including proposal, analysis and visualization plans, analysis outcome presentation, and final presentation
