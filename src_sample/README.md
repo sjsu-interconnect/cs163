@@ -7,4 +7,6 @@
 ```bash
 $ python app4.py
 ```
-It requires ```pandas``` and ```dash``` packages. Execute ```pip install pandas dash```.
+- It requires ```pandas``` and ```dash``` packages. Execute ```pip install pandas dash```.
+
+- On pythonanywhere, ```<usr-name>_pythonanywhere_com_wsgi.py``` should be modified based on ```secularlionfish_pythonanywhere_com_wsgi.py```.
