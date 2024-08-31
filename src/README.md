@@ -3,4 +3,4 @@
 
 
 ## Webpage Generation Instructions
-<!--- Todo: Update this section so someone else can recreate your webpage -->
+#### Sample query: http://127.0.0.1:5000/weather/San%20Francisco

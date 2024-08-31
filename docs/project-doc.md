@@ -1,9 +1,9 @@
-# Proposal: Weather Data Analysis and Forecasting
+# Proposal: California Weather Data Analysis and Forecasting
 
 ## **Project Summary: Weather Data Analysis and Forecasting**
 
 #### **Project Goals:**
-The primary goal of this project is to develop a robust system for analyzing historical and real-time weather data to forecast weather conditions and identify long-term climate trends. By applying time series analysis and machine learning techniques, the project aims to create accurate weather predictions that can be used to inform decisions in agriculture, disaster preparedness, and climate studies. Additionally, the project will focus on detecting anomalies in weather patterns, which could signal significant shifts in climate or unexpected weather events.
+The primary goal of this project is to develop a robust system for analyzing historical and real-time weather data specific to California from 1970 to forecast weather conditions and identify long-term climate trends in the region. By applying time series analysis and machine learning techniques, the project aims to create accurate weather predictions tailored to California's diverse climates. These predictions will be valuable for informing decisions in agriculture, particularly in California's Central Valley, disaster preparedness for events such as wildfires and droughts, and broader climate studies focusing on the state's unique environmental challenges. Additionally, the project will emphasize detecting anomalies in California's weather patterns, which could signal significant shifts in the local climate or unexpected weather events, providing early warnings for communities and policymakers.
 
 #### **Broader Impacts:**
 This project has the potential to make a meaningful impact across various sectors:
