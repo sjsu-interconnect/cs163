@@ -1,6 +1,6 @@
 # app.py
 
-from flask import Flask, jsonify, request
+from flask import Flask, request, jsonify
 from weather_service import WeatherService
 
 app = Flask(__name__)
@@ -9,19 +9,16 @@ app = Flask(__name__)
 def home():
     return "Welcome to the Weather API!"
 
-@app.route('/weather/<city_name>', methods=['GET'])
-def get_weather_by_city(city_name):
-    weather_data = WeatherService.get_current_weather(city_name)
-    return jsonify(weather_data)
-
-@app.route('/weather', methods=['GET'])
-def get_weather_by_coordinates():
+@app.route('/current-weather', methods=['GET'])
+def get_current_weather():
+    city_name = request.args.get('city_name')
     lat = request.args.get('lat')
     lon = request.args.get('lon')
-    if not lat or not lon:
-        return jsonify({"error": "Please provide latitude and longitude parameters"}), 400
+    
+    if not city_name and (not lat or not lon):
+        return jsonify({"error": "You must provide either a city_name or both lat and lon coordinates."}), 400
 
-    weather_data = WeatherService.get_weather_by_coordinates(lat, lon)
+    weather_data = WeatherService.get_current_weather(city_name=city_name, lat=lat, lon=lon)
     return jsonify(weather_data)
 
 if __name__ == '__main__':
