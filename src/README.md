@@ -6,6 +6,7 @@
 #### Sample query: 
 - http://127.0.0.1:5000/current-weather?lat=37.7749&lon=-122.4194
 - http://127.0.0.1:5000/current-weather?city_name=Los%20Angeles
+- http://127.0.0.1:5000/historical-weather?lat=34.0522&lon=-118.2437&start_date=2024-08-20&end_date=2024-08-25
 
 ## List of Endpoints for OpenWeather API
 ### **Types of Data to Collect from the OpenWeather API**

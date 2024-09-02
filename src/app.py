@@ -21,5 +21,18 @@ def get_current_weather():
     weather_data = WeatherService.get_current_weather(city_name=city_name, lat=lat, lon=lon)
     return jsonify(weather_data)
 
+@app.route('/historical-weather', methods=['GET'])
+def get_historical_weather():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
+
+    if not lat or not lon or not start_date or not end_date:
+        return jsonify({"error": "Please provide latitude, longitude, start_date, and end_date parameters."}), 400
+
+    historical_data = WeatherService.get_historical_weather(lat, lon, start_date, end_date)
+    return jsonify(historical_data)
+
 if __name__ == '__main__':
     app.run(debug=True)
