@@ -25,9 +25,51 @@ The project will utilize the following key data sources:
 2. **OpenWeatherMap API:** Offers real-time weather data, including current temperature and precipitation, crucial for accurate short-term weather forecasts and anomaly detection.
 
 #### **Key Components:**
-1. **Time Series Analysis:** Analyze historical weather data to identify long-term trends and seasonal patterns specific to California. This analysis will form the basis for developing predictive models.
+1. **Time Series Analysis:** Analyze historical weather data specific to California from 1970 to the present, focusing on key variables such as temperature, precipitation, and humidity. This analysis will identify long-term trends and seasonal patterns unique to different regions of California, such as coastal, inland, and mountainous areas. By understanding these patterns, we can establish a solid foundation for developing predictive models that account for California's diverse climate variations.
 
-2. **Machine Learning Models:** Develop and train a machine learning model, such as LSTM (Long Short-Term Memory), to forecast future weather conditions based on the identified trends and seasonal patterns.
+2. **Machine Learning Models:**
+   - Develop and train an LSTM (Long Short-Term Memory) model to forecast future weather conditions for California based on the identified trends and seasonal patterns. The model will specifically predict:
+     - **Daily temperature fluctuations** (maximum and minimum temperatures) to assist in understanding heatwaves or cold spells.
+     - **Precipitation patterns** to forecast the likelihood and intensity of rain, which is critical for water resource management and agriculture.
+     - **Humidity levels** to predict changes that may impact comfort levels and agricultural practices.
+   - The model will be trained on historical data, focusing on short-term predictions (e.g., up to 7 days ahead) while incorporating features such as time lags, seasonality indicators, and geographical information to enhance forecast accuracy tailored to specific regions within California.
+
+#### **Possible Geographical Division**
+1. **Coastal Region:**
+   - Includes cities like San Francisco, Los Angeles, and San Diego.
+   - Characterized by mild temperatures, higher humidity, and frequent coastal fog.
+   - Influenced by the Pacific Ocean, with distinct seasonal variations.
+
+2. **Inland Empire:**
+   - Comprises areas such as Riverside and San Bernardino.
+   - Features a semi-arid climate with hotter summers and cooler winters.
+   - Less influenced by coastal weather patterns, leading to more pronounced temperature fluctuations.
+
+3. **Central Valley:**
+   - Encompasses regions like Sacramento and Fresno.
+   - Known for its agricultural productivity and hot summers.
+   - Experiences a Mediterranean climate with dry summers and wet winters.
+
+4. **Mountain Region:**
+   - Includes the Sierra Nevada and other mountain ranges.
+   - Characterized by colder temperatures and significant snowfall in winter.
+   - Seasonal variations are pronounced, with temperature changes depending on elevation.
+
+5. **Desert Region:**
+   - Covers areas such as Palm Springs and Death Valley.
+   - Features extreme temperatures, with very hot summers and mild winters.
+   - Receives low precipitation and has unique weather patterns compared to other regions.
+
+6. **Northern California:**
+   - Includes the Bay Area and the Redwood Coast.
+   - Known for its diverse microclimates, from coastal fog to inland heat.
+   - Experiences significant seasonal variation, particularly in precipitation.
+
+7. **Southern California:**
+   - Encompasses areas from Los Angeles to San Diego.
+   - Characterized by a warm Mediterranean climate with dry summers.
+   - Weather patterns can vary significantly between coastal and inland areas.
+
 
 ## **Data Sources**
 
@@ -44,8 +86,6 @@ For this project, the data will be sourced from both existing datasets provided 
    - **Data Available:** Offers real-time weather data, including current temperature and precipitation, essential for short-term weather forecasting and anomaly detection.
    - **Collected By:** OpenWeatherMap, aggregating data from weather stations and satellites.
    - **Data Collection Method:** Real-time data is collected through a global network of weather stations and sensors, complemented by satellite imagery.
-
-By focusing on these two sources, the project aims to leverage both comprehensive historical records and up-to-date real-time data for robust weather analysis and forecasting.
 
 
 ## **Expected Major Findings**
