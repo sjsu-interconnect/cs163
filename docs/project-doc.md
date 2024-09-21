@@ -170,8 +170,6 @@ To ensure the data from the weather APIs is clean, accurate, and suitable for an
      - Perform initial exploratory analysis to understand data distributions, correlations, and patterns.
      - Use visualization techniques to identify trends, seasonality, and potential data issues.
 
-These preprocessing steps will prepare the data for effective analysis and modeling, ensuring that it is accurate, consistent, and suitable for developing reliable weather forecasts and detecting anomalies.
-
 
 <!--- 
 ----------
@@ -205,11 +203,20 @@ To provide an initial understanding of the datasets by summarizing key character
 To analyze how weather variables change over time and identify notable patterns or trends.
 
 **Techniques:**
+
 - **Seasonal Decomposition (STL Decomposition):**
-  - This technique separates a time series into seasonal, trend, and residual components, making it easier to analyze and visualize underlying patterns.
+  - **Implementation Plan:** Use the STL decomposition method to break down the historical weather data into seasonal, trend, and residual components. This will involve:
+    - Selecting a suitable time frame (e.g., daily or monthly data) to capture seasonal variations accurately.
+    - Applying the STL decomposition function from libraries such as `statsmodels` in Python to visualize and analyze each component. 
+    - Assessing the seasonal patterns across different regions in California to identify variations in temperature and precipitation that align with specific seasons.
 
 - **Autoregressive Integrated Moving Average (ARIMA):**
-  - ARIMA models are effective for forecasting future points in a time series by capturing both trend and seasonality through differencing and moving averages.
+  - **Implementation Plan:** Fit ARIMA models to forecast future weather conditions by:
+    - Conducting exploratory data analysis (EDA) to determine the appropriate differencing needed for stationarity.
+    - Using autocorrelation function (ACF) and partial autocorrelation function (PACF) plots to identify the optimal order of the ARIMA model (p, d, q).
+    - Training the ARIMA model on the historical data, focusing on key weather variables such as temperature and precipitation.
+    - Validating the model’s performance using metrics like Mean Absolute Error (MAE) and comparing predicted values against actual observations for accuracy.
+
 
 ### **3. Anomaly Detection**
 
@@ -217,11 +224,29 @@ To analyze how weather variables change over time and identify notable patterns 
 To identify unusual or extreme weather events that deviate significantly from historical norms.
 
 **Techniques:**
+
 - **Z-Score Analysis:**
-  - This method calculates Z-scores to detect anomalies based on how many standard deviations a data point is from the mean, effectively identifying significant deviations.
+  - **Implementation Plan:** 
+    - Calculate the mean and standard deviation of key weather variables (e.g., temperature, precipitation) using historical data from California.
+    - For each data point in the dataset, compute the Z-score using the formula:
+      \[
+      Z = \frac{(X - \mu)}{\sigma}
+      \]
+      where \(X\) is the data point, \(\mu\) is the mean, and \(\sigma\) is the standard deviation.
+    - Identify anomalies as data points with Z-scores exceeding a threshold (e.g., ±3), indicating significant deviations from normal weather conditions. 
+    - Visualize the results using time series plots to highlight the identified anomalies and their corresponding dates.
 
 - **Interquartile Range (IQR) Method:**
-  - This technique identifies outliers by assessing data points that fall below the first quartile (Q1) or above the third quartile (Q3) by a specified factor (e.g., 1.5 times the IQR), providing a robust measure for detecting anomalies.
+  - **Implementation Plan:**
+    - Calculate the first (Q1) and third quartiles (Q3) of the weather data distribution to determine the IQR:
+      \[
+      IQR = Q3 - Q1
+      \]
+    - Define lower and upper bounds for detecting outliers:
+      - Lower bound: \(Q1 - 1.5 \times IQR\)
+      - Upper bound: \(Q3 + 1.5 \times IQR\)
+    - Flag any data points that fall outside these bounds as potential anomalies. 
+    - Apply this method to each weather variable and visualize the identified outliers using box plots or scatter plots to provide context for the extreme values.
 
 ### **4. Data Completeness and Integrity**
 
