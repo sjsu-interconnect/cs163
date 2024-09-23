@@ -117,9 +117,104 @@ In this project, several key findings are anticipated, based on the analysis of 
   - *Question 1:* What are the key seasonal weather patterns in California, and how can they be predicted with high accuracy?
   - *Question 2:* How effective are machine learning models in forecasting short-term weather conditions compared to traditional methods?
 
-## **Preprocessing Steps**
+## Data Summary and Statistical Analysis
+### **1. Time Series Line Plot (Weather Variables Over Time)**
+   - **Purpose:** Visualize trends and seasonal patterns in weather data over time.
+   - **Variables:** Temperature, precipitation, humidity.
+   - **Details:** 
+     - Use a **line plot** to show the evolution of these variables over a specified time period (e.g., monthly or yearly averages from 1970 to the present).
+     - Overlay multiple lines (e.g., temperature and precipitation) to show relationships between variables.
+   - **Tools:** Matplotlib, Plotly (for interactive visualization).
 
-To ensure the data from the weather APIs is clean, accurate, and suitable for analysis, the following preprocessing steps will be undertaken:
+### **2. Heatmap (Seasonal Patterns by Region)**
+   - **Purpose:** Show seasonal variations of temperature and precipitation across different regions of California.
+   - **Variables:** Temperature, precipitation.
+   - **Details:** 
+     - Create a **heatmap** where rows represent months or seasons and columns represent regions (e.g., Coastal, Inland, Mountain).
+     - Use color gradients to show average temperature or precipitation in each region across different seasons.
+   - **Tools:** Seaborn, Plotly.
+
+### **3. Box Plot (Comparing Weather Variability Across Regions)**
+   - **Purpose:** Display the distribution and variability of key weather variables by region.
+   - **Variables:** Temperature, precipitation, humidity.
+   - **Details:**
+     - Use **box plots** to compare the spread, median, and outliers of temperature or precipitation between different regions (e.g., Coastal, Inland, Mountain).
+     - This can highlight regional differences in weather variability and extremes.
+   - **Tools:** Matplotlib, Seaborn.
+
+### **4. Anomaly Detection Plot (Z-Scores Over Time)**
+   - **Purpose:** Visualize anomalies in weather data over time.
+   - **Variables:** Z-scores of temperature, precipitation, humidity.
+   - **Details:**
+     - Plot **time series with Z-scores** to highlight data points that fall beyond a threshold (e.g., ±3 Z-scores) to mark them as anomalies.
+     - Annotate significant weather events or extreme conditions (e.g., heatwaves, droughts).
+   - **Tools:** Matplotlib, Plotly.
+
+### **5. Scatter Plot (Temperature vs. Precipitation)**
+   - **Purpose:** Analyze the relationship between temperature and precipitation.
+   - **Variables:** Temperature, precipitation.
+   - **Details:**
+     - Use a **scatter plot** to visualize how temperature and precipitation are correlated across different regions and time periods.
+     - Add a trend line to highlight any linear or non-linear relationships.
+   - **Tools:** Matplotlib, Seaborn.
+
+### **6. Correlation Heatmap (Relationships Between Weather Variables)**
+   - **Purpose:** Show the correlation between different weather variables.
+   - **Variables:** Temperature, precipitation, humidity, wind speed.
+   - **Details:**
+     - Create a **correlation matrix heatmap** where each cell represents the correlation coefficient between two variables.
+     - This helps identify strong or weak correlations between weather factors, such as temperature and humidity.
+   - **Tools:** Seaborn.
+
+### **7. Geographic Map (Spatial Visualization of Weather Data)**
+   - **Purpose:** Display spatial distribution of weather data across different regions of California.
+   - **Variables:** Average temperature, precipitation.
+   - **Details:**
+     - Use a **choropleth map** to color-code California regions based on the average temperature or precipitation.
+     - Alternatively, use **bubble maps** where the size of the bubbles represents the magnitude of a weather variable.
+   - **Tools:** Plotly, Folium, Geopandas.
+
+### **8. Moving Average Plot (Smoothing Weather Trends)**
+   - **Purpose:** Smooth out short-term fluctuations to observe long-term trends in weather data.
+   - **Variables:** Temperature, precipitation.
+   - **Details:**
+     - Use a **moving average plot** to smooth out daily or monthly fluctuations in temperature or precipitation.
+     - Overlay both the raw data and the moving average to compare short-term fluctuations and long-term trends.
+   - **Tools:** Matplotlib, Plotly.
+
+### **9. Histogram (Distribution of Weather Events)**
+   - **Purpose:** Show the frequency distribution of weather variables.
+   - **Variables:** Temperature, precipitation, humidity.
+   - **Details:**
+     - Use a **histogram** to visualize how often certain temperature ranges or precipitation amounts occur.
+     - This can help identify common weather conditions (e.g., most frequent temperature range) or extreme events (e.g., heavy rainfall).
+   - **Tools:** Matplotlib, Seaborn.
+
+### **10. Multi-Line Plot (Comparing Forecasted vs. Actual Data)**
+   - **Purpose:** Compare the machine learning model’s forecast with actual weather data.
+   - **Variables:** Forecasted temperature, actual temperature.
+   - **Details:**
+     - Use a **multi-line plot** to display both the **forecasted** and **actual** weather data (e.g., temperature or precipitation) over time.
+     - Highlight the accuracy or discrepancies in predictions by showing both lines on the same axis.
+   - **Tools:** Matplotlib, Plotly.
+
+### **11. Bar Plot (Monthly Rainfall Totals by Region)**
+   - **Purpose:** Compare total monthly rainfall across different regions.
+   - **Variables:** Precipitation.
+   - **Details:**
+     - Use a **stacked bar plot** to compare total monthly rainfall across different California regions.
+     - Each bar can represent a different region, and the height shows the total precipitation for that month.
+   - **Tools:** Matplotlib, Plotly.
+
+### **12. Interactive Dashboard (Real-Time Data)**
+   - **Purpose:** Provide an interactive overview of current weather conditions and forecasts.
+   - **Variables:** Temperature, precipitation, humidity.
+   - **Details:**
+     - Create an **interactive dashboard** with real-time weather data using **Plotly Dash** or **Tableau Public**.
+     - Include widgets to filter by region, time period, and weather variable for dynamic exploration of the data.
+   - **Tools:** Plotly Dash, Tableau.
+
+## **Preprocessing Steps**
 
 1. **Data Collection:**
    - **OpenWeatherMap API:**
