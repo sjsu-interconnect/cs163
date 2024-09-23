@@ -70,13 +70,13 @@ Split the dataset into training and testing sets, ensuring that the split mainta
 
 The data is available across 236 monthly timeframes from January 2005 until present (August 2024). As a result, there are 236 entries for this data.
 - Statistics:
-![newplot.png](..%2Fnewplot.png)![newplot1.png](..%2Fnewplot1.png)
-
+![CPI.png](..%2Fsrc%2FCPI.png)
+![CPI ROC.png](..%2Fsrc%2FCPI%20ROC.png)
 The CPI seems increased over time throughout the observing period. However, when looking at the rate of changes, we witness a lot of drastic downward movement. We can investigate furthermore on 
 what has happened at those periods of time. However, the mean of rate of change is 0.116, which shows the usual trend of inflation indicator to increase overtime.
 
 ### Food and Beverages Item Price Data:
-![newplot2.png](..%2Fnewplot2.png)
+![Item Price Availability.png](..%2Fsrc%2FItem%20Price%20Availability.png)
 There are 672 series (item categories) that was obtained from the BLS. Due to the seasonal characteristic of food and beverages item, the BLS only selected some specific item to calculate the 
 CPI for Food and Beverages. From 2005 to February 2022, the number of observations was stable at around 20 items per report cycle. However, maybe there was a change in report method from the BLS 
 that decrease the number of observed item to only around 15 in the following periods. So, even though we have 672 series, we can only use around 16 items to calculate the CPI of F&B.
@@ -91,7 +91,7 @@ The data is fully recorded in the period from January 2005 until now (July 2024)
 Other than that, there are 2 PCE indices that relates directly to F&B industry. The total number of observations are 470 with the mean expenditure falls around 9 million dollars per month.
 
 - A quick peak:
-![newplot7.png](..%2Fnewplot7.png)
+![BEA PCE.png](..%2Fsrc%2FBEA%20PCE.png)
 
 The general trend is increasing as expected due to the inflation rule. However, in 2020,  which is the COVID-19 period, there is an
 interesting sudden change. We can investigate this change later to see how this affect our CPI index. 
