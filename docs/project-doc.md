@@ -1,4 +1,4 @@
-# Proposal: Using Machine Learning to predict Groceries Price using Historical Data and News Sentiment
+# Proposal: Food and Beverages Price Analysis using Food item Price, Personal Consumption Expenditure and Agricultural Stocking Data
 
 ## Project Summary
 <!--- Write a summary of your project including the project goals, broader impacts, and data sources -->
