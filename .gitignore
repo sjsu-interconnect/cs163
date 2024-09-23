@@ -162,3 +162,11 @@ cython_debug/
 #.idea/
 .DS_Store
 venv/
+/docs/project-doc.pdf
+/src/ap.data.3.Food
+/src/Advance Monthly Sales for Retail and Food Services (F&B only).csv
+/newplot.png
+/newplot1.png
+/newplot2.png
+/newplot5.png
+/newplot7.png
