@@ -36,38 +36,38 @@ The project will utilize the following key data sources:
 
 #### **Possible Geographical Division**
 1. **Coastal Region:**
-   - Includes cities like San Francisco, Los Angeles, and San Diego.
-   - Characterized by mild temperatures, higher humidity, and frequent coastal fog.
+- **San Francisco, CA**
+  - **Reason:** San Francisco is well-known for its coastal fog, mild temperatures, and proximity to the Pacific Ocean, making it an ideal location for studying the climate of the coastal region.   - Characterized by mild temperatures, higher humidity, and frequent coastal fog.
    - Influenced by the Pacific Ocean, with distinct seasonal variations.
 
 2. **Inland Empire:**
-   - Comprises areas such as Riverside and San Bernardino.
-   - Features a semi-arid climate with hotter summers and cooler winters.
+- **Riverside, CA**
+  - **Reason:** Riverside is located in the heart of the Inland Empire, featuring a semi-arid climate with hot summers and cooler winters, and is less influenced by coastal weather patterns.   - Features a semi-arid climate with hotter summers and cooler winters.
    - Less influenced by coastal weather patterns, leading to more pronounced temperature fluctuations.
 
 3. **Central Valley:**
-   - Encompasses regions like Sacramento and Fresno.
-   - Known for its agricultural productivity and hot summers.
+- **Fresno, CA**
+  - **Reason:** Fresno is a major city in the Central Valley and represents the region’s hot summers and agricultural significance, as well as its Mediterranean climate with dry summers and wet winters.   - Known for its agricultural productivity and hot summers.
    - Experiences a Mediterranean climate with dry summers and wet winters.
 
 4. **Mountain Region:**
-   - Includes the Sierra Nevada and other mountain ranges.
-   - Characterized by colder temperatures and significant snowfall in winter.
+- **South Lake Tahoe, CA**
+  - **Reason:** Located in the Sierra Nevada range, South Lake Tahoe experiences cold winters with heavy snowfall, making it a key area for understanding the mountain climate.   - Characterized by colder temperatures and significant snowfall in winter.
    - Seasonal variations are pronounced, with temperature changes depending on elevation.
 
 5. **Desert Region:**
-   - Covers areas such as Palm Springs and Death Valley.
-   - Features extreme temperatures, with very hot summers and mild winters.
+- **Palm Springs, CA**
+  - **Reason:** Palm Springs is a well-known desert city with extremely hot summers, mild winters, and minimal precipitation, representing the unique desert climate.   - Features extreme temperatures, with very hot summers and mild winters.
    - Receives low precipitation and has unique weather patterns compared to other regions.
 
 6. **Northern California:**
-   - Includes the Bay Area and the Redwood Coast.
-   - Known for its diverse microclimates, from coastal fog to inland heat.
+- **Eureka, CA**
+  - **Reason:** Located on the Redwood Coast, Eureka experiences significant seasonal precipitation and diverse microclimates, including coastal fog and inland heat, making it ideal for representing Northern California’s climate.   - Known for its diverse microclimates, from coastal fog to inland heat.
    - Experiences significant seasonal variation, particularly in precipitation.
 
 7. **Southern California:**
-   - Encompasses areas from Los Angeles to San Diego.
-   - Characterized by a warm Mediterranean climate with dry summers.
+- **Los Angeles, CA**
+  - **Reason:** Los Angeles is a major city in Southern California, characterized by a warm Mediterranean climate with dry summers and variable weather patterns between coastal and inland areas.   - Characterized by a warm Mediterranean climate with dry summers.
    - Weather patterns can vary significantly between coastal and inland areas.
 
 
