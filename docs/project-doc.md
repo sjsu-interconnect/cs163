@@ -3,75 +3,86 @@
 ## **Project Summary: Weather Data Analysis and Forecasting**
 
 ### **Project Goals:**
-The primary goal of this project is to develop a robust system for forecasting weather conditions in California using historical weather data from 1970. Specifically, the project will focus on applying time series analysis to predict weather patterns and detect anomalies that may indicate significant shifts in climate or unexpected weather events. The system will be designed to support disaster preparedness efforts by providing early warnings for extreme weather events such as wildfires and droughts.
+The primary goal of this project is to develop a basic and easy-to-implement system for forecasting short-term weather conditions in California and analyzing their correlation to crop yield. The project will apply time series analysis to predict daily weather patterns, such as temperature and precipitation, from 1979 to the present, focusing on widely available crop data. By examining the relationship between weather and crop yield, the project aims to assist farmers in optimizing planting, irrigation, and harvesting schedules.
 
-### **Early Warning System:**
+### **Specific Crops and Timeframe:**
+The project will focus on the following crops, selected due to their economic importance in California and the availability of historical yield data:
+- **Almonds:** A major crop in California, sensitive to temperature and water availability.
+- **Tomatoes:** Widely grown and sensitive to temperature fluctuations, with high economic value.
+- **Grapes (Wine Grapes):** Impacted by temperature and rainfall, crucial for California’s wine industry.
+- **Lettuce:** Highly sensitive to temperature and precipitation variations, grown extensively in California.
 
-The early warning system will be a core feature of the weather forecasting platform, designed to alert users of potential extreme weather events or anomalies, such as wildfires, heatwaves, droughts, and floods, based on historical and real-time weather data. The goal is to make this system **simple and user-friendly**, so individuals and organizations can easily implement it in their day-to-day operations.
+The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data for each growing season.
 
-#### **How the Early Warning System Works:**
-1. **Anomaly Detection:** 
-   - The system will continuously monitor weather data and compare current conditions with historical patterns to identify potential anomalies.
-   - Anomalies may include significant deviations in temperature, precipitation, humidity, or wind speed—indicators of extreme weather events.
-   
-2. **Threshold-Based Alerts:**
-   - The system will define thresholds for various weather variables (e.g., heat levels, rainfall amounts, humidity) based on historical data and regional climate trends.
-   - When these thresholds are exceeded (e.g., unusually high temperatures that could indicate wildfire risk or sudden drops in precipitation signaling potential drought), the system will trigger an alert.
+### **Key Features:**
 
-3. **Prediction of Extreme Events:**
-   - Using machine learning models such as LSTM, the system can predict short-term weather conditions (e.g., the likelihood of a wildfire or extreme rainfall within the next few days).
-   - The model will provide probabilistic forecasts for extreme events and anomalies, helping users make informed decisions.
+1. **Short-Term Weather Prediction:**
+   - The system will predict daily weather conditions, focusing on key variables such as temperature, precipitation, and humidity, from 1979 to the present.
+   - Time series analysis and simple machine learning models will generate these predictions, helping farmers anticipate weather conditions for upcoming days and plan agricultural activities accordingly.
+
+2. **Correlation with Crop Yield:**
+   - The project will analyze historical crop yield data for almonds, tomatoes, grapes, and lettuce alongside weather conditions to identify how short-term weather changes (e.g., heatwaves, rainfall) impact crop productivity.
+   - The system will focus on identifying specific correlations between weather variables and crop yields, aiming to provide actionable insights for agricultural planning.
+
+---
 
 ### **User Implementation and Benefits:**
 
-The system’s early warning functionality will be delivered through a **simple, accessible interface** that can be customized for different user needs. Here’s how users can implement and benefit from the early warning system:
+#### **1. Simple Web-Based Dashboard:**
+   - **Implementation:** A straightforward web-based dashboard will provide daily weather forecasts and display visualizations (e.g., temperature trends, rainfall predictions) with a focus on crop yield impact.
+     - Users can access real-time weather data and track how forecasted conditions might impact yields for almonds, tomatoes, grapes, and lettuce, based on historical correlations.
+     - The dashboard will offer simple, easy-to-read graphs and alerts tailored to each crop.
+   - **Benefit:** Farmers will gain a **quick overview** of the predicted weather and its potential impact on specific crop yields, enabling better decision-making for daily agricultural activities.
 
-#### **1. Web-Based Dashboard:**
-   - **Implementation:** Users can access a web-based dashboard that provides real-time weather forecasts and displays alerts for extreme weather events.
-     - Users can configure their preferences by setting the types of alerts they want to receive (e.g., heatwave alerts, wildfire risk alerts) and the regions they are monitoring.
-     - The dashboard will provide visualizations such as time series plots of temperature and precipitation, heatmaps for regional anomalies, and notifications of potential extreme events.
-   - **Benefit:** This provides a **centralized, real-time overview** of the weather conditions and predictions for specific regions, helping users stay updated on potential risks.
-
-#### **2. SMS/Email Notifications:**
-   - **Implementation:** The system can send **automated notifications** via SMS or email when an anomaly is detected or when there is a high probability of extreme weather.
-     - Users can subscribe to receive notifications for specific events, such as drought warnings, flooding risks, or fire hazards, tailored to their region and risk tolerance.
-     - Alerts can include key information such as predicted weather conditions, probability of the event, and suggested actions (e.g., prepare for potential water restrictions or wildfire evacuation plans).
-   - **Benefit:** Users can **receive timely alerts directly to their phones or inboxes**, allowing them to take action even if they are not actively monitoring the dashboard.
-
-#### **Broader Impacts:**
-
-### **1. Integration of Historical and Real-Time Data**
-- **Existing Systems:** Many existing models prioritize real-time weather data and focus on short-term predictions without deeply leveraging historical data for long-term trends or anomaly detection.
-- **Your Project:** Your project integrates **50+ years of historical weather data** (NOAA) with **real-time data** (OpenWeatherMap), allowing for robust time series analysis and the detection of long-term weather trends and anomalies.
-  - **Benefit:** Enhanced ability to identify seasonal patterns and climate shifts that could signal important long-term changes, providing valuable insights for climate research and future planning.
-
-### **2. Anomaly Detection for Extreme Weather Events**
-- **Existing Systems:** While current weather systems can forecast extreme events (e.g., storms, heatwaves), they often rely on short-term meteorological data without detecting patterns that deviate significantly from historical norms.
-- **Your Project:** By applying **anomaly detection techniques** (Z-score, IQR), the system can detect **unusual weather events** that are outliers compared to historical patterns. This can give **early warnings** for events like droughts, extreme heat, or irregular rainfall that may not be immediately visible through traditional forecasts.
-  - **Benefit:** Proactive identification of extreme or unusual weather conditions, enabling earlier preparation and better resource management.
-
-### **3. Tailored for Agriculture and Disaster Preparedness**
-- **Existing Systems:** Traditional weather forecasts are generalized and often not optimized for specific industries like agriculture or sectors focused on disaster preparedness.
-- **Your Project:** The system is explicitly designed to cater to the needs of **agriculture** (e.g., planting schedules, irrigation management) and **disaster preparedness** (e.g., predicting wildfires, floods). The forecasts will consider both **short-term predictions** and **long-term climate trends**, which are critical for these sectors.
-  - **Benefit:** Targeted insights that provide practical value to farmers, policymakers, and emergency responders, offering decision-making tools that are directly applicable to their specific needs.
+#### **2. Basic Alerts for Critical Weather Conditions:**
+   - **Implementation:** The system will send basic alerts via SMS or email when critical weather conditions (e.g., excessive heat or lack of rainfall) are forecasted.
+     - Users can set preferences for receiving alerts based on conditions likely to affect specific crops, such as heat alerts for almonds or frost warnings for lettuce.
+   - **Benefit:** The alerts will help farmers take **timely action** to protect crops from adverse weather conditions, such as adjusting irrigation or delaying planting during extreme heat.
 
 #### **Data Sources:**
-
 The project will utilize the following key data sources:
 
 1. **NOAA Climate Data:** Provides comprehensive historical weather data, including temperature and precipitation records, essential for analyzing long-term climate trends and patterns in California.
 
 2. **OpenWeatherMap API:** Offers real-time weather data, including current temperature and precipitation, crucial for accurate short-term weather forecasts and anomaly detection.
 
-#### **Key Components:**
-1. **Time Series Analysis:** Analyze historical weather data specific to California from 1970 to the present, focusing on key variables such as temperature, precipitation, and humidity. This analysis will identify long-term trends and seasonal patterns unique to different regions of California, such as coastal, inland, and mountainous areas. By understanding these patterns, we can establish a solid foundation for developing predictive models that account for California's diverse climate variations.
+3. **USDA Crop Yield Data:**
+- Data Available: Provides historical crop yield data for key crops in California, including almonds, tomatoes, grapes, and lettuce.
+- Timeframe: Crop yield data from 1979 to the present.
 
-2. **Machine Learning Models:**
-   - Develop and train an LSTM (Long Short-Term Memory) model to forecast future weather conditions for California based on the identified trends and seasonal patterns. The model will specifically predict:
-     - **Daily temperature fluctuations** (maximum and minimum temperatures) to assist in understanding heatwaves or cold spells.
-     - **Precipitation patterns** to forecast the likelihood and intensity of rain, which is critical for water resource management and agriculture.
-     - **Humidity levels** to predict changes that may impact comfort levels and agricultural practices.
-   - The model will be trained on historical data, focusing on short-term predictions (e.g., up to 7 days ahead) while incorporating features such as time lags, seasonality indicators, and geographical information to enhance forecast accuracy tailored to specific regions within California.
+### **Key Components:**
+
+1. **Time Series Analysis:**
+   - **Objective:** Analyze historical weather data specific to California from **1979 to the present**, focusing on key variables such as temperature, precipitation, and humidity.
+   - **Techniques:** 
+     - Apply **time series decomposition** to separate the weather data into trend, seasonal, and residual components, helping to identify key patterns.
+     - Focus on understanding short-term weather patterns, particularly during critical growing seasons for the selected crops.
+     - Analyze the impact of weather trends on crop yield, such as how extreme temperature fluctuations or insufficient rainfall affect crop productivity.
+
+2. **Correlation Analysis Between Climate and Crop Yield:**
+   - **Objective:** Explore the correlation between short-term weather patterns and crop yield for key crops in California, including almonds, tomatoes, grapes, and lettuce.
+   - **Techniques:**
+     - Use **Pearson correlation** or **Spearman rank correlation** to assess the relationship between weather variables (e.g., temperature, rainfall) and crop yields.
+     - Identify weather thresholds (e.g., maximum temperature or minimum rainfall) that significantly impact yield during critical phases of crop growth (e.g., flowering, harvesting).
+
+3. **Machine Learning Models for Short-Term Weather Prediction and Crop Yield Forecasting:**
+   - **Objective:** Develop and train a basic and easy-to-implement machine learning model to **simultaneously forecast short-term weather conditions** (e.g., up to 7 days ahead) **and predict potential impacts on crop yields** based on these forecasts.
+   - **Model:** Utilize a **Long Short-Term Memory (LSTM)** model for predicting key weather variables and associating them with crop yield outcomes:
+     - **Daily temperature fluctuations** (maximum and minimum temperatures) to anticipate heatwaves or frost events, which can negatively impact yields.
+     - **Precipitation patterns** to forecast rain events, helping farmers optimize irrigation schedules and estimate crop water stress levels.
+     - **Humidity levels** to predict changes that influence crop growth, such as fungal infections or evaporation rates.
+   - **Training Data:**
+     - The model will be trained on **NOAA historical weather data** from 1979 to the present, **OpenWeatherMap real-time data**, and **USDA crop yield data** for almonds, tomatoes, grapes, and lettuce.
+     - By combining weather predictions with past crop yield data, the model will learn how weather conditions influence yield during key growth phases.
+   - **Predictions:**
+     - The LSTM model will not only predict short-term weather conditions but will also forecast potential impacts on crop yield based on expected weather changes.
+     - For example, if a heatwave is predicted, the model will forecast the possible reduction in yield for sensitive crops like almonds or lettuce, providing early warnings to farmers.
+
+4. **Yield Impact Alerts:**
+   - **Objective:** Provide farmers with timely alerts regarding expected changes in crop yield based on predicted weather conditions.
+   - **Implementation:**
+     - The system will send alerts via SMS or email, notifying farmers of potential yield risks caused by upcoming weather conditions (e.g., droughts, excessive heat).
+     - Alerts will include specific details about the forecasted weather and its likely impact on different crops (e.g., "Almond yield is expected to decrease by X% due to predicted high temperatures over the next week").
 
 #### **Possible Geographical Division**
 1. **Coastal Region:**
@@ -109,169 +120,147 @@ The project will utilize the following key data sources:
   - **Reason:** Los Angeles is a major city in Southern California, characterized by a warm Mediterranean climate with dry summers and variable weather patterns between coastal and inland areas.   - Characterized by a warm Mediterranean climate with dry summers.
    - Weather patterns can vary significantly between coastal and inland areas.
 
+Here’s the revised version of the **Expected Major Findings** section, aligning with the new scope of short-term climate prediction and crop yield analysis:
 
-## **Data Sources**
-
-For this project, the data will be sourced from both existing datasets provided by established weather data providers and potentially some data that will be collected or integrated manually. The project will combine data from at least two sources to enhance the robustness and accuracy of the analysis and forecasts.
-
-#### **Data Sources:**
-
-1. **NOAA Climate Data**
-   - **Data Available:** Provides comprehensive historical weather data, including temperature and precipitation records crucial for analyzing long-term climate trends.
-   - **Collected By:** NOAA, using a network of ground-based stations, satellites, and ocean buoys.
-   - **Data Collection Method:** Historical records are collected from various observational platforms to ensure accuracy and consistency.
-
-2. **OpenWeatherMap API**
-   - **Data Available:** Offers real-time weather data, including current temperature and precipitation, essential for short-term weather forecasting and anomaly detection.
-   - **Collected By:** OpenWeatherMap, aggregating data from weather stations and satellites.
-   - **Data Collection Method:** Real-time data is collected through a global network of weather stations and sensors, complemented by satellite imagery.
-
+---
 
 ## **Expected Major Findings**
 
-In this project, several key findings are anticipated, based on the analysis of historical and real-time weather data. These findings will provide valuable insights into weather patterns, forecasting accuracy, and potential climate trends. Below are the main areas of exploration and the expected outcomes:
+In this project, several key findings are anticipated, based on the analysis of historical and real-time weather data, as well as crop yield data. These findings will provide valuable insights into short-term weather patterns, crop yield predictions, and their correlation. Below are the main areas of exploration and the expected outcomes:
 
-#### **1. Identification of Seasonal Weather Patterns**
+#### **1. Identification of Short-Term Weather Patterns and Their Impact on Crop Yield**
    - **Expected Finding:** 
-     - Analyze historical weather data to identify consistent seasonal patterns, such as typical temperature and precipitation trends throughout the year.
+     - Analyze historical weather data to identify short-term weather patterns, such as daily temperature fluctuations, precipitation trends, and humidity variations, particularly during critical crop growing seasons.
+     - Identify how these weather patterns correlate with fluctuations in crop yield for almonds, tomatoes, grapes, and lettuce.
    - **Value:** 
-     - Improved seasonal weather forecasts will support agricultural planning and preparation for seasonal climate variations.
+     - Improved understanding of how specific weather conditions (e.g., heatwaves, rainfall patterns) affect crop yield, helping farmers optimize agricultural practices based on short-term forecasts.
 
-#### **2. Development of Accurate Short-Term Weather Forecasts**
+#### **2. Development of Accurate Short-Term Weather and Crop Yield Forecasts**
    - **Expected Finding:** 
-     - Develop machine learning models to provide accurate short-term weather forecasts, including temperature and precipitation for the next few days.
+     - Develop machine learning models (e.g., LSTM) to provide accurate short-term weather forecasts, including daily predictions for temperature, precipitation, and humidity.
+     - Extend these forecasts to predict how upcoming weather conditions might impact crop yields, using historical correlations between weather patterns and yield outcomes.
    - **Value:** 
-     - Enhanced short-term forecasts will aid day-to-day decision-making in sectors like transportation and emergency management.
+     - Farmers will be able to anticipate short-term weather impacts on crop yield, enabling them to make informed decisions on irrigation, planting, and harvesting to minimize potential losses. For example, if a heatwave is predicted, farmers can take early action to protect crops that are sensitive to temperature extremes.
+
+Here’s the revised version of the **Objective Discussion** section, aligned with your new focus on short-term climate prediction and crop yield analysis:
+
+---
 
 ### **Objective Discussion:**
 
 - **Impact and Utility:**
-  - This project aims to improve short-term weather forecasts and enhance understanding of seasonal weather patterns. Accurate forecasts will benefit agriculture, emergency management, and daily decision-making. Additionally, identifying seasonal trends will provide insights into climate variations and inform broader climate research.
+  - This project aims to improve **short-term weather forecasts** and provide actionable insights into the correlation between weather conditions and **crop yield** in California. Accurate weather and crop yield predictions will benefit **agriculture** by enabling farmers to optimize irrigation, planting, and harvesting schedules. Additionally, early identification of critical weather conditions (e.g., heatwaves or droughts) will help farmers take timely actions to mitigate crop damage. The project will also provide value by contributing to **agricultural planning** and **disaster preparedness**.
 
 - **Main Claims and Questions:**
-  - *Claim 1:* The project will accurately predict seasonal weather patterns using historical data, enhancing the reliability of seasonal forecasts.
-  - *Claim 2:* Machine learning models will provide accurate short-term weather predictions, validated through comparison with real-time and historical data.
-  - *Claim 3:* Anomaly detection will identify unusual weather events, offering early warnings for extreme conditions.
+  - *Claim 1:* The project will accurately predict short-term weather patterns (e.g., temperature and precipitation) using historical and real-time data, enhancing decision-making for farmers and agricultural stakeholders.
+  - *Claim 2:* Machine learning models will provide accurate forecasts for how short-term weather patterns (e.g., heatwaves, rainfall) impact crop yields, validated through historical crop yield data.
+  - *Claim 3:* The project will offer early warnings about potential yield losses based on forecasted critical weather conditions, allowing farmers to take preventive actions to protect crops.
 
-  - *Question 1:* What are the key seasonal weather patterns in California, and how can they be predicted with high accuracy?
-  - *Question 2:* How effective are machine learning models in forecasting short-term weather conditions compared to traditional methods?
+  - *Question 1:* How do short-term weather patterns (e.g., temperature fluctuations, precipitation) influence crop yield, and what are the most critical weather variables affecting yield?
+  - *Question 2:* How effective are machine learning models (e.g., LSTM) in predicting short-term weather conditions and their impact on crop yield compared to traditional forecasting methods?
 
 ## Data Summary and Statistical Analysis
 
-### **1. Time Series Line Plot (Weather Variables Over Time)**
-   - **Purpose:** Visualize trends and seasonal patterns in weather data over time for each region.
+### **Weather-Only Focus:**
+
+#### **1. Time Series Line Plot (Weather Variables Over Time)**
+   - **Purpose:** Visualize trends and seasonal patterns in key weather variables over time.
    - **Variables:** Temperature, precipitation, humidity.
-   - **Details:**
-     - Create a **line plot** to show the evolution of these variables (temperature, precipitation, humidity) over time for each location (e.g., San Francisco, Fresno, Palm Springs).
-     - Overlay the variables for comparison and look for patterns like seasonal fluctuations or anomalies.
-   - **Why it’s useful:** It will help you observe trends over time and highlight seasonal changes, showing how different regions (coastal vs. desert) experience varying weather patterns.
+   - **Why it’s useful:** It will help you observe how weather conditions change over time and identify patterns, such as seasonal fluctuations or anomalies, across different regions.
+   - **Implementation:** Create line plots for different regions in California to observe temperature, precipitation, and humidity trends.
    - **Tools:** Matplotlib, Plotly (for interactive exploration).
 
-### **2. Heatmap (Seasonal Variations by Region)**
+#### **2. Heatmap (Seasonal Variations by Region)**
    - **Purpose:** Show how weather variables (e.g., temperature, precipitation) vary across different regions and seasons.
    - **Variables:** Temperature, precipitation.
-   - **Details:**
-     - Create a **heatmap** with months on the x-axis and regions (e.g., San Francisco, Riverside, South Lake Tahoe) on the y-axis.
-     - Use color gradients to show the magnitude of the weather variable (e.g., average temperature or precipitation).
-   - **Why it’s useful:** This will clearly illustrate regional and seasonal differences in weather conditions, making it easy to identify periods of extreme temperatures or precipitation.
+   - **Why it’s useful:** This will clearly show the regional and seasonal differences in weather patterns, making it easy to identify periods of extreme temperatures or rainfall.
+   - **Implementation:** Create a heatmap showing how temperature or precipitation varies monthly across regions (e.g., Coastal, Inland, Central Valley).
    - **Tools:** Seaborn, Plotly.
 
-### **3. Box Plot (Weather Variability Across Regions)**
-   - **Purpose:** Compare the variability in key weather variables (e.g., temperature, precipitation) across regions.
+#### **3. Geographic Map (Spatial Visualization of Weather Data)**
+   - **Purpose:** Visualize the spatial distribution of weather data (e.g., average temperature or precipitation) across California.
    - **Variables:** Temperature, precipitation.
-   - **Details:**
-     - Use a **box plot** to show the spread, median, and outliers for temperature and precipitation across different regions.
-     - This will help identify which regions experience more extreme weather variability (e.g., higher temperatures in Palm Springs vs. cooler conditions in South Lake Tahoe).
-   - **Why it’s useful:** This will allow for a visual comparison of the range and variability of weather conditions across regions, highlighting extremes.
-   - **Tools:** Matplotlib, Seaborn.
-
-### **4. Geographic Map (Spatial Visualization of Weather Data)**
-   - **Purpose:** Visualize the spatial distribution of weather data (e.g., average temperature, precipitation) across the state of California.
-   - **Variables:** Temperature, precipitation.
-   - **Details:**
-     - Use a **choropleth map** to show the average temperature or precipitation for each region (e.g., San Francisco, Riverside, Fresno).
-     - Alternatively, use **bubble maps** to display weather extremes (larger bubbles for higher values).
-   - **Why it’s useful:** A geographic map will allow you to visualize how weather patterns vary spatially across California and identify regional differences in temperature or precipitation.
+   - **Why it’s useful:** A geographic map will help you visualize how weather patterns vary spatially and highlight regional differences.
+   - **Implementation:** Use a choropleth map to show the spatial distribution of temperature or precipitation across different agricultural regions.
    - **Tools:** Plotly, Folium, Geopandas.
 
-### **5. Scatter Plot (Temperature vs. Precipitation by Region)**
-   - **Purpose:** Examine the relationship between temperature and precipitation in different regions.
-   - **Variables:** Temperature, precipitation.
-   - **Details:**
-     - Use a **scatter plot** to display temperature on one axis and precipitation on the other.
-     - Add different colors or markers to represent each region (e.g., San Francisco, Palm Springs) to see how regions differ in the relationship between temperature and precipitation.
-   - **Why it’s useful:** This plot will allow you to see if regions with higher temperatures (e.g., Palm Springs) have less precipitation, and vice versa.
+### **Weather and Crop Yield Data:**
+
+#### **4. Scatter Plot (Weather Variables vs. Crop Yield by Region)**
+   - **Purpose:** Explore the relationship between key weather variables and crop yield.
+   - **Variables:** Temperature, precipitation, crop yield.
+   - **Why it’s useful:** This plot will help you identify how weather conditions (e.g., extreme heat or drought) impact crop yields in different regions.
+   - **Implementation:** Plot temperature or precipitation against crop yield for different regions, using separate markers for each crop.
    - **Tools:** Matplotlib, Seaborn.
 
-### **6. Anomaly Detection Plot (Highlighting Extreme Weather Events)**
-   - **Purpose:** Visualize anomalies in the weather data to identify extreme events (e.g., heatwaves, heavy rainfall).
-   - **Variables:** Temperature, precipitation, humidity.
-   - **Details:**
-     - Use a **time series plot** with annotations to highlight anomalies, such as periods where temperature or precipitation significantly deviates from the norm.
-     - Use **Z-scores** or **IQR method** to detect and mark these anomalies on the plot.
-   - **Why it’s useful:** This will allow you to identify and visually highlight extreme weather events (e.g., record heatwaves in Palm Springs, or unusual rainfall in Eureka), which are important for understanding regional climate variability.
+#### **5. Correlation Matrix Heatmap (Weather Variables and Crop Yield)**
+   - **Purpose:** Show correlations between weather variables (e.g., temperature, precipitation) and crop yield.
+   - **Variables:** Temperature, precipitation, humidity, crop yield.
+   - **Why it’s useful:** This will help identify which weather factors have the strongest impact on specific crop yields, offering valuable insights into climate-crop relationships.
+   - **Implementation:** Generate a heatmap to visualize correlations between weather variables and crop yields for selected crops (e.g., almonds, tomatoes, grapes, lettuce).
+   - **Tools:** Seaborn, Plotly.
+
+#### **6. Anomaly Detection Plot (Weather Extremes and Yield Impacts)**
+   - **Purpose:** Identify and visualize extreme weather events (e.g., heatwaves, droughts) and their impact on crop yields.
+   - **Variables:** Temperature, precipitation, crop yield.
+   - **Why it’s useful:** This plot will help you highlight how extreme weather conditions directly impact crop productivity and identify patterns of risk.
+   - **Implementation:** Use a time series plot to overlay weather anomalies (e.g., Z-scores for temperature) with crop yield data to show how extreme weather events affect yields.
    - **Tools:** Matplotlib, Plotly.
-
-
-### **Why These Plots are Informative:**
-- **Time Series Line Plot:** Helps track changes over time, essential for understanding long-term trends and seasonal patterns.
-- **Heatmap:** Offers a clear visualization of seasonal and regional variations, making it easier to compare different times and locations.
-- **Box Plot:** Highlights variability and extremes, which are key to understanding regional climate behavior.
-- **Geographic Map:** Provides spatial context, essential for a project covering different geographical regions.
-- **Scatter Plot:** Explores relationships between key variables like temperature and precipitation.
-- **Anomaly Detection Plot:** Focuses on outliers and extreme events, critical for identifying climate anomalies.
-
 
 ## **Preprocessing Steps**
 
 1. **Data Collection:**
    - **OpenWeatherMap API:**
-     - Retrieve real-time weather data for specified locations, including temperature, humidity, wind speed, precipitation, and atmospheric pressure.
-     - Fetch historical weather data for the same locations to facilitate comparison with real-time data.
+     - Retrieve **real-time weather data** for specified California regions, including temperature, precipitation, humidity, and atmospheric pressure.
+     - Fetch **historical weather data** for the same locations from 1979 to the present to compare with real-time data and align it with crop yield data.
 
    - **NOAA Climate Data:**
-     - Download historical weather records, focusing on temperature and precipitation data from specified time periods.
-     - Ensure data includes relevant climatic indicators for California, such as long-term temperature trends and seasonal variations.
+     - Download historical weather records, focusing on temperature and precipitation data from **1979 to the present**, specifically for California's agricultural regions.
+     - Ensure data includes relevant indicators such as **seasonal temperature patterns** and **rainfall amounts** during critical crop growth periods.
+
+   - **USDA Crop Yield Data:**
+     - Collect historical crop yield data for key crops (e.g., almonds, tomatoes, grapes, lettuce) from **1979 to the present**.
+     - Align crop yield data with corresponding weather conditions for the same regions and timeframes to support correlation analysis.
 
 2. **Data Cleaning:**
    - **Handling Missing Values:**
-     - Identify and address any missing or null values in the dataset. Employ interpolation methods for missing numerical values and imputation techniques for categorical variables.
-     - Remove or flag incomplete records that cannot be accurately imputed.
+     - Identify and address any missing values in both weather and crop yield datasets. Use **interpolation** for missing numerical weather data and appropriate **imputation techniques** for missing crop yield values.
+     - Remove incomplete records that cannot be reliably imputed without introducing significant biases into the dataset.
 
    - **Outlier Detection:**
-     - Detect and investigate outliers using statistical methods (e.g., Z-scores, IQR). Determine if they result from data entry errors or represent genuine anomalies.
-     - Apply appropriate transformation or correction methods to handle outliers.
+     - Detect and investigate outliers in both weather and crop yield data using statistical methods (e.g., **Z-scores**, **IQR**).
+     - Distinguish between valid anomalies (e.g., extreme weather events) and data entry errors, applying transformations where needed.
 
    - **Data Consistency:**
-     - Standardize units of measurement (e.g., temperature in Celsius or Fahrenheit, precipitation in millimeters or inches) across datasets.
-     - Ensure consistency in timestamp formats and time zones for accurate time series analysis.
+     - Standardize units of measurement across datasets (e.g., temperature in Celsius, precipitation in millimeters).
+     - Ensure consistent timestamp formats and align time zones between weather and crop yield data for accurate **time series analysis**.
 
 3. **Data Integration:**
    - **Combining Data Sources:**
-     - Merge datasets from OpenWeatherMap and NOAA by aligning timestamps and geographic locations.
-     - Create a unified dataset that integrates real-time and historical data for comprehensive analysis.
+     - Merge datasets from OpenWeatherMap, NOAA, and USDA by aligning **timestamps** and **geographic regions**.
+     - Create a unified dataset that integrates **historical and real-time weather data** with crop yield data to support both prediction and correlation analysis.
 
    - **Resampling and Aggregation:**
-     - Aggregate data to appropriate time intervals (e.g., daily, weekly) to match the analysis requirements.
-     - Resample data to ensure uniform time intervals and handle any discrepancies in the temporal resolution.
+     - Aggregate data to **daily** or **weekly intervals**, ensuring consistent time intervals between weather and crop yield data.
+     - Resample data if necessary to handle any discrepancies in temporal resolution between weather and crop yield records.
 
 4. **Feature Engineering:**
    - **Creating New Features:**
-     - Generate additional features such as moving averages, seasonal indicators, and anomaly flags based on historical weather patterns.
-     - Create features that capture interactions between different weather variables (e.g., humidity-temperature interactions).
+     - Generate additional features such as **moving averages** (e.g., for temperature and precipitation), **seasonal indicators**, and **anomaly flags** to highlight extreme weather conditions (e.g., heatwaves, droughts) and their potential impact on crop yield.
+     - Create interaction features to capture relationships between weather variables (e.g., temperature-humidity interaction) and how they may affect crop productivity.
 
    - **Normalization and Scaling:**
-     - Normalize or scale numerical features to ensure they are on a comparable scale, which is important for machine learning model performance.
-     - Apply methods such as Min-Max scaling or Standardization as appropriate.
+     - Normalize or scale numerical features to ensure they are on a comparable scale, which is critical for the performance of machine learning models used in both weather prediction and yield forecasting.
+     - Apply **Min-Max scaling** or **Standardization** as needed to normalize temperature, precipitation, and yield values.
 
 5. **Data Validation:**
    - **Verification:**
-     - Cross-check the preprocessed data with source data to ensure accuracy and completeness.
-     - Validate the consistency and integrity of the dataset by comparing with known benchmarks or historical records.
+     - Cross-check preprocessed weather and crop yield data against source data to ensure accuracy and completeness, ensuring that no critical information has been lost during data cleaning or integration.
+     - Validate data integrity by comparing with known benchmarks (e.g., historical yield records) and weather patterns to ensure consistency.
 
    - **Exploratory Data Analysis (EDA):**
-     - Perform initial exploratory analysis to understand data distributions, correlations, and patterns.
-     - Use visualization techniques to identify trends, seasonality, and potential data issues.
+     - Conduct initial **exploratory data analysis** to understand the distributions and relationships between weather variables and crop yield.
+     - Use **visualization techniques** (e.g., correlation heatmaps, time series plots) to identify trends, seasonality, and potential data issues that may affect the model's predictions.
 
 
 <!--- 
@@ -281,79 +270,90 @@ The following sections should be used for the full proposal document. These are 
 -->
 
 
-
-
-## Basic Data Properties and Analysis Techniques
+## **Basic Data Properties and Analysis Techniques**
 
 ### **1. Data Overview and Summary Statistics**
 
 **Objective:**
-To provide an initial understanding of the datasets by summarizing key characteristics and overall distributions of the data.
+To provide an initial understanding of both weather and crop yield datasets by summarizing key characteristics and overall distributions of the data.
 
 **Techniques:**
 - **Descriptive Statistics:**
-  - **Mean, Median, and Mode:** Calculate these central tendency measures for continuous variables such as temperature, precipitation, and humidity to understand the average conditions.
-  - **Standard Deviation and Variance:** Measure the variability of weather variables to assess the spread and dispersion of the data.
-  - **Min and Max Values:** Identify the range of weather conditions to understand the extremes observed in the dataset.
+  - **Mean, Median, and Mode:** Calculate these central tendency measures for continuous variables such as temperature, precipitation, humidity, and crop yield to understand the average conditions and productivity.
+  - **Standard Deviation and Variance:** Measure the variability of weather variables and crop yield to assess the spread and dispersion of the data.
+  - **Min and Max Values:** Identify the range of weather conditions and crop yield values to understand the extremes observed in the dataset.
 
 - **Distribution Analysis:**
-  - **Histograms:** Create histograms to visualize the frequency distribution of continuous variables (e.g., temperature, precipitation).
-  - **Box Plots:** Use box plots to visualize the spread, central tendency, and potential outliers in the data.
+  - **Histograms:** Create histograms to visualize the frequency distribution of weather variables and crop yield (e.g., temperature distribution across regions or yield distribution for each crop).
+  - **Box Plots:** Use box plots to visualize the spread, central tendency, and potential outliers in both weather data and crop yield data.
 
 ### **2. Temporal Analysis**
 
 **Objective:**
-To analyze how weather variables change over time and identify notable patterns or trends.
+To analyze how weather variables change over time and assess how these changes correlate with crop yield during different growing seasons.
 
 **Techniques:**
 
 - **Seasonal Decomposition (STL Decomposition):**
-  - **Implementation Plan:** Use the STL decomposition method to break down the historical weather data into seasonal, trend, and residual components. This will involve:
-    - Selecting a suitable time frame (e.g., daily or monthly data) to capture seasonal variations accurately.
-    - Applying the STL decomposition function from libraries such as `statsmodels` in Python to visualize and analyze each component. 
-    - Assessing the seasonal patterns across different regions in California to identify variations in temperature and precipitation that align with specific seasons.
+  - **Implementation Plan:** Use STL decomposition to break down weather data (e.g., temperature, precipitation) into seasonal, trend, and residual components.
+    - Select appropriate timeframes for weather data (e.g., daily or monthly) and crop yield data (e.g., seasonal) to capture seasonal variations.
+    - Apply **STL decomposition** to visualize and analyze how seasonal weather patterns correspond with crop productivity (e.g., rainfall during growing seasons correlating with higher yields).
+    - Assess regional variations (e.g., Coastal, Inland, Central Valley) to determine how different regions experience unique seasonal patterns that impact crop yield.
 
 - **Autoregressive Integrated Moving Average (ARIMA):**
-  - **Implementation Plan:** Fit ARIMA models to forecast future weather conditions by:
-    - Conducting exploratory data analysis (EDA) to determine the appropriate differencing needed for stationarity.
-    - Using autocorrelation function (ACF) and partial autocorrelation function (PACF) plots to identify the optimal order of the ARIMA model (p, d, q).
-    - Training the ARIMA model on the historical data, focusing on key weather variables such as temperature and precipitation.
-    - Validating the model’s performance using metrics like Mean Absolute Error (MAE) and comparing predicted values against actual observations for accuracy.
-
+  - **Implementation Plan:** Fit ARIMA models to forecast short-term weather conditions.
+    - Conduct **exploratory data analysis (EDA)** to determine the appropriate differencing for stationarity of the time series data.
+    - Use **ACF** and **PACF** plots to identify the optimal order for the ARIMA model (p, d, q).
+    - Train the ARIMA model on historical weather data, focusing on short-term predictions of temperature and precipitation.
+    - Validate the model’s performance using metrics like **Mean Absolute Error (MAE)** and compare predicted weather values with real-time data.
+    - Integrate crop yield data into the model to predict how upcoming weather conditions might influence yields.
 
 ### **3. Anomaly Detection**
 
 **Objective:**
-To identify unusual or extreme weather events that deviate significantly from historical norms.
+To identify unusual or extreme weather events (e.g., heatwaves, droughts) that deviate significantly from historical norms and assess their impact on crop yield.
 
 **Techniques:**
 
 - **Z-Score Analysis:**
   - **Implementation Plan:** 
-    - Calculate the mean and standard deviation of key weather variables (e.g., temperature, precipitation) using historical data from California.
-    - For each data point in the dataset, compute the Z-score using the formula.
-    - Identify anomalies as data points with Z-scores exceeding a threshold (e.g., ±3), indicating significant deviations from normal weather conditions. 
-    - Visualize the results using time series plots to highlight the identified anomalies and their corresponding dates.
+    - Calculate the mean and standard deviation of weather variables (e.g., temperature, precipitation) from historical data.
+    - Compute **Z-scores** for each weather observation to measure the number of standard deviations away from the mean.
+    - Identify anomalies (e.g., extreme temperatures or rainfall) by setting a threshold (e.g., Z-scores exceeding ±3).
+    - Overlay weather anomalies with crop yield data to assess whether extreme weather events had significant effects on yield.
 
 - **Interquartile Range (IQR) Method:**
   - **Implementation Plan:**
-    - Calculate the first (Q1) and third quartiles (Q3) of the weather data distribution to determine the IQR.
-    - Define lower and upper bounds for detecting outliers:
-    - Flag any data points that fall outside these bounds as potential anomalies. 
-    - Apply this method to each weather variable and visualize the identified outliers using box plots or scatter plots to provide context for the extreme values.
+    - Calculate the **first (Q1)** and **third quartiles (Q3)** of weather data to compute the **IQR**.
+    - Define upper and lower bounds (e.g., Q1 - 1.5 * IQR and Q3 + 1.5 * IQR) to detect weather outliers (e.g., extreme rainfall or drought).
+    - Visualize outliers using box plots and examine how these anomalies correlate with crop yield drops during specific growing seasons.
 
-### **4. Data Completeness and Integrity**
+### **4. Correlation Analysis Between Weather and Crop Yield**
 
 **Objective:**
-To assess the quality of the data and identify any issues related to missing or inconsistent entries.
+To explore the relationships between weather variables (e.g., temperature, precipitation) and crop yield to identify how short-term weather fluctuations affect agricultural productivity.
+
+**Techniques:**
+- **Pearson and Spearman Correlation Analysis:**
+  - Use **Pearson correlation** to assess linear relationships and **Spearman correlation** for non-linear relationships between weather variables and crop yield.
+  - Identify which weather factors (e.g., temperature, rainfall) most strongly influence yield for each crop (e.g., almonds, tomatoes, grapes).
+
+- **Scatter Plots:**
+  - Visualize relationships between weather variables (e.g., temperature vs. precipitation) and crop yield to detect patterns or thresholds where yield is significantly impacted.
+
+### **5. Data Completeness and Integrity**
+
+**Objective:**
+To ensure the quality and consistency of weather and crop yield data for accurate analysis and predictions.
 
 **Techniques:**
 - **Missing Value Analysis:**
-  - **Missingness Patterns:** Analyze patterns of missing values to understand their distribution and potential impact on the analysis.
-  - **Imputation Strategies:** Evaluate and apply appropriate imputation methods to address missing data, ensuring minimal disruption to the analysis.
+  - Analyze patterns of missing values in both weather and crop yield data to understand their distribution and potential impact on analysis.
+  - Use appropriate **imputation strategies** (e.g., forward/backward fill for time series data) to handle missing data and minimize its effect on results.
 
 - **Data Consistency Checks:**
-  - **Data Validation:** Verify data integrity by comparing against known benchmarks or historical data to ensure accuracy and consistency.
+  - Perform **data validation** by cross-referencing weather data with known historical trends and comparing crop yield data against established benchmarks for accuracy.
+  - Ensure consistency across datasets (e.g., weather data from different sources or crop yield data for different regions) to avoid discrepancies in analysis.
 
 
 ## Automation, Scalability, and Portability
