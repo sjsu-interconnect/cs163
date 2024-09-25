@@ -207,61 +207,42 @@ Here’s the revised version of the **Objective Discussion** section, aligned wi
    - **Implementation:** Use a time series plot to overlay weather anomalies (e.g., Z-scores for temperature) with crop yield data to show how extreme weather events affect yields.
    - **Tools:** Matplotlib, Plotly.
 
-## **Preprocessing Steps**
+### Preprocessing Steps
 
-1. **Data Collection:**
-   - **OpenWeatherMap API:**
-     - Retrieve **real-time weather data** for specified California regions, including temperature, precipitation, humidity, and atmospheric pressure.
-     - Fetch **historical weather data** for the same locations from 1979 to the present to compare with real-time data and align it with crop yield data.
+**OpenWeatherMap API:**
+- Retrieve real-time weather data for specified California regions, capturing key variables such as temperature, precipitation, humidity, and atmospheric pressure.
+- Fetch historical weather data from 1979 to the present, allowing comparison with real-time data.
+- No preprocessing will be done on dates; date parsing will remain flexible for time interval analysis.
+- The data will be aggregated by date, city, and other relevant attributes such as temperature, humidity, and precipitation.
 
-   - **NOAA Climate Data:**
-     - Download historical weather records, focusing on temperature and precipitation data from **1979 to the present**, specifically for California's agricultural regions.
-     - Ensure data includes relevant indicators such as **seasonal temperature patterns** and **rainfall amounts** during critical crop growth periods.
+**NOAA Climate Data:**
+- Download historical weather records focusing on temperature and precipitation from 1979 to the present for California’s agricultural regions.
+- Include relevant seasonal indicators such as temperature patterns and rainfall amounts during critical crop growth periods.
+- No specific date preprocessing; historical weather records will align with crop yield data for later correlation analysis.
 
-   - **USDA Crop Yield Data:**
-     - Collect historical crop yield data for key crops (e.g., almonds, tomatoes, grapes, lettuce) from **1979 to the present**.
-     - Align crop yield data with corresponding weather conditions for the same regions and timeframes to support correlation analysis.
+**USDA Crop Yield Data:**
+- Collect historical crop yield data for key crops (almonds, tomatoes, grapes, lettuce) from 1979 to the present.
+- Align the crop yield data with the corresponding weather conditions in the same regions and timeframes for correlation analysis.
+- Regions are assigned based on counties to facilitate regional crop yield comparisons with weather data.
 
-2. **Data Cleaning:**
-   - **Handling Missing Values:**
-     - Identify and address any missing values in both weather and crop yield datasets. Use **interpolation** for missing numerical weather data and appropriate **imputation techniques** for missing crop yield values.
-     - Remove incomplete records that cannot be reliably imputed without introducing significant biases into the dataset.
+**Region Assignment for Crop Yield Data:**
+- Assign each county in the dataset to a predefined region (e.g., San Francisco, Riverside, Fresno) based on its geographical location.
+- Use these regions to aggregate and filter crop data by year and region, grouping by crop name to derive relevant metrics such as harvested acres, yield, production, price per unit, and overall value.
 
-   - **Outlier Detection:**
-     - Detect and investigate outliers in both weather and crop yield data using statistical methods (e.g., **Z-scores**, **IQR**).
-     - Distinguish between valid anomalies (e.g., extreme weather events) and data entry errors, applying transformations where needed.
+**Weather Data Aggregation:**
+1. **Daily Aggregation:**
+   - Parse and clean the datetime column, removing unnecessary time zone information.
+   - Aggregate weather data (temperature, pressure, humidity, etc.) daily, grouped by both date and city, to get a daily summary of weather conditions per city.
 
-   - **Data Consistency:**
-     - Standardize units of measurement across datasets (e.g., temperature in Celsius, precipitation in millimeters).
-     - Ensure consistent timestamp formats and align time zones between weather and crop yield data for accurate **time series analysis**.
+2. **Monthly Aggregation:**
+   - Extract the year and month from the datetime column.
+   - Group the weather data by city and month to generate monthly summaries for each location, including average temperature, humidity, and precipitation.
 
-3. **Data Integration:**
-   - **Combining Data Sources:**
-     - Merge datasets from OpenWeatherMap, NOAA, and USDA by aligning **timestamps** and **geographic regions**.
-     - Create a unified dataset that integrates **historical and real-time weather data** with crop yield data to support both prediction and correlation analysis.
+3. **Yearly Aggregation:**
+   - Extract the year from the datetime column.
+   - Group the weather data by city and year to produce yearly summaries, focusing on the same variables as daily and monthly aggregations.
 
-   - **Resampling and Aggregation:**
-     - Aggregate data to **daily** or **weekly intervals**, ensuring consistent time intervals between weather and crop yield data.
-     - Resample data if necessary to handle any discrepancies in temporal resolution between weather and crop yield records.
-
-4. **Feature Engineering:**
-   - **Creating New Features:**
-     - Generate additional features such as **moving averages** (e.g., for temperature and precipitation), **seasonal indicators**, and **anomaly flags** to highlight extreme weather conditions (e.g., heatwaves, droughts) and their potential impact on crop yield.
-     - Create interaction features to capture relationships between weather variables (e.g., temperature-humidity interaction) and how they may affect crop productivity.
-
-   - **Normalization and Scaling:**
-     - Normalize or scale numerical features to ensure they are on a comparable scale, which is critical for the performance of machine learning models used in both weather prediction and yield forecasting.
-     - Apply **Min-Max scaling** or **Standardization** as needed to normalize temperature, precipitation, and yield values.
-
-5. **Data Validation:**
-   - **Verification:**
-     - Cross-check preprocessed weather and crop yield data against source data to ensure accuracy and completeness, ensuring that no critical information has been lost during data cleaning or integration.
-     - Validate data integrity by comparing with known benchmarks (e.g., historical yield records) and weather patterns to ensure consistency.
-
-   - **Exploratory Data Analysis (EDA):**
-     - Conduct initial **exploratory data analysis** to understand the distributions and relationships between weather variables and crop yield.
-     - Use **visualization techniques** (e.g., correlation heatmaps, time series plots) to identify trends, seasonality, and potential data issues that may affect the model's predictions.
-
+Each step produces a CSV output that will serve as an input for the next phase of analysis. This approach maintains flexibility by not heavily preprocessing dates, enabling more dynamic analysis during the model-building phase. The preprocessing pipeline ensures consistent, clean data for later correlation and time-series analysis.
 
 <!--- 
 ----------
