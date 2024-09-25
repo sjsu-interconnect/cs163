@@ -10,7 +10,8 @@ The project will focus on the following crops, selected due to their economic im
 - **Almonds:** A major crop in Fresno, sensitive to temperature and water availability.
 - **Tomatoes:** Widely grown and sensitive to temperature fluctuations, with high economic value.
 
-The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data for each growing season in Fresno.
+The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data for each growing season in the Central California region, which includes Fresno County, and various other ``['Fresno', 'Sacramento', 'San Joaquin', 'Stanislaus', 'Merced', 'Madera', 'Kings', 'Tulare',
+               'Kern', 'Yolo', 'Colusa', 'Sutter', 'Butte', 'Glenn', 'Tehama']``
 
 ### **Key Features:**
 
