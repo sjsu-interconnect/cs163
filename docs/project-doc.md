@@ -1,18 +1,16 @@
-# Proposal: California Weather Data Analysis and Forecasting
+# Proposal: Fresno Weather Data Analysis and Forecasting
 
 ## **Project Summary: Weather Data Analysis and Forecasting**
 
 ### **Project Goals:**
-The primary goal of this project is to develop a basic and easy-to-implement system for forecasting short-term weather conditions in California and analyzing their correlation to crop yield. The project will apply time series analysis to predict daily weather patterns, such as temperature and precipitation, from 1979 to the present, focusing on widely available crop data. By examining the relationship between weather and crop yield, the project aims to assist farmers in optimizing planting, irrigation, and harvesting schedules.
+The primary goal of this project is to develop a basic and easy-to-implement system for forecasting short-term weather conditions in **Fresno County** and analyzing their correlation to **tomato and almond yields**. The project will apply time series analysis to predict daily weather patterns, such as temperature and precipitation, from **1979 to the present**, focusing on **Fresno County’s crop data**. By examining the relationship between weather and crop yield, the project aims to assist farmers in optimizing planting, irrigation, and harvesting schedules.
 
 ### **Specific Crops and Timeframe:**
-The project will focus on the following crops, selected due to their economic importance in California and the availability of historical yield data:
-- **Almonds:** A major crop in California, sensitive to temperature and water availability.
+The project will focus on the following crops, selected due to their economic importance in **Fresno** and the availability of historical yield data:
+- **Almonds:** A major crop in Fresno, sensitive to temperature and water availability.
 - **Tomatoes:** Widely grown and sensitive to temperature fluctuations, with high economic value.
-- **Grapes (Wine Grapes):** Impacted by temperature and rainfall, crucial for California’s wine industry.
-- **Lettuce:** Highly sensitive to temperature and precipitation variations, grown extensively in California.
 
-The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data for each growing season.
+The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data for each growing season in Fresno.
 
 ### **Key Features:**
 
@@ -21,8 +19,8 @@ The analysis will cover the period from **1979 to the present**, utilizing both 
    - Time series analysis and simple machine learning models will generate these predictions, helping farmers anticipate weather conditions for upcoming days and plan agricultural activities accordingly.
 
 2. **Correlation with Crop Yield:**
-   - The project will analyze historical crop yield data for almonds, tomatoes, grapes, and lettuce alongside weather conditions to identify how short-term weather changes (e.g., heatwaves, rainfall) impact crop productivity.
-   - The system will focus on identifying specific correlations between weather variables and crop yields, aiming to provide actionable insights for agricultural planning.
+   - The project will analyze historical crop yield data for **almonds and tomatoes** alongside weather conditions to identify how short-term weather changes (e.g., heatwaves, rainfall) impact crop productivity.
+   - The system will focus on identifying specific correlations between weather variables and crop yields, aiming to provide actionable insights for agricultural planning in Fresno.
 
 ---
 
@@ -30,134 +28,87 @@ The analysis will cover the period from **1979 to the present**, utilizing both 
 
 #### **1. Simple Web-Based Dashboard:**
    - **Implementation:** A straightforward web-based dashboard will provide daily weather forecasts and display visualizations (e.g., temperature trends, rainfall predictions) with a focus on crop yield impact.
-     - Users can access real-time weather data and track how forecasted conditions might impact yields for almonds, tomatoes, grapes, and lettuce, based on historical correlations.
-     - The dashboard will offer simple, easy-to-read graphs and alerts tailored to each crop.
+     - Users can access real-time weather data and track how forecasted conditions might impact yields for **almonds** and **tomatoes**, based on historical correlations.
+     - The dashboard will offer simple, easy-to-read graphs and alerts tailored to these two crops.
    - **Benefit:** Farmers will gain a **quick overview** of the predicted weather and its potential impact on specific crop yields, enabling better decision-making for daily agricultural activities.
 
 #### **2. Basic Alerts for Critical Weather Conditions:**
    - **Implementation:** The system will send basic alerts via SMS or email when critical weather conditions (e.g., excessive heat or lack of rainfall) are forecasted.
-     - Users can set preferences for receiving alerts based on conditions likely to affect specific crops, such as heat alerts for almonds or frost warnings for lettuce.
+     - Users can set preferences for receiving alerts based on conditions likely to affect **almonds** or **tomatoes**, such as heat alerts for almonds or drought warnings for tomatoes.
    - **Benefit:** The alerts will help farmers take **timely action** to protect crops from adverse weather conditions, such as adjusting irrigation or delaying planting during extreme heat.
 
 #### **Data Sources:**
 The project will utilize the following key data sources:
 
-1. **NOAA Climate Data:** Provides comprehensive historical weather data, including temperature and precipitation records, essential for analyzing long-term climate trends and patterns in California.
+1. **NOAA Climate Data:** Provides comprehensive historical weather data, including temperature and precipitation records, essential for analyzing long-term climate trends and patterns in Fresno.
 
 2. **OpenWeatherMap API:** Offers real-time weather data, including current temperature and precipitation, crucial for accurate short-term weather forecasts and anomaly detection.
 
 3. **USDA Crop Yield Data:**
-- Data Available: Provides historical crop yield data for key crops in California, including almonds, tomatoes, grapes, and lettuce.
-- Timeframe: Crop yield data from 1979 to the present.
+   - Data Available: Provides historical crop yield data for **almonds** and **tomatoes** in Fresno County.
+   - Timeframe: Crop yield data from 1979 to the present.
+
+---
 
 ### **Key Components:**
 
 1. **Time Series Analysis:**
-   - **Objective:** Analyze historical weather data specific to California from **1979 to the present**, focusing on key variables such as temperature, precipitation, and humidity.
+   - **Objective:** Analyze historical weather data specific to Fresno from **1979 to the present**, focusing on key variables such as temperature, precipitation, and humidity.
    - **Techniques:** 
      - Apply **time series decomposition** to separate the weather data into trend, seasonal, and residual components, helping to identify key patterns.
-     - Focus on understanding short-term weather patterns, particularly during critical growing seasons for the selected crops.
+     - Focus on understanding short-term weather patterns, particularly during critical growing seasons for **almonds** and **tomatoes**.
      - Analyze the impact of weather trends on crop yield, such as how extreme temperature fluctuations or insufficient rainfall affect crop productivity.
 
 2. **Correlation Analysis Between Climate and Crop Yield:**
-   - **Objective:** Explore the correlation between short-term weather patterns and crop yield for key crops in California, including almonds, tomatoes, grapes, and lettuce.
+   - **Objective:** Explore the correlation between short-term weather patterns and crop yield for **almonds** and **tomatoes** in Fresno.
    - **Techniques:**
      - Use **Pearson correlation** or **Spearman rank correlation** to assess the relationship between weather variables (e.g., temperature, rainfall) and crop yields.
      - Identify weather thresholds (e.g., maximum temperature or minimum rainfall) that significantly impact yield during critical phases of crop growth (e.g., flowering, harvesting).
 
 3. **Machine Learning Models for Short-Term Weather Prediction and Crop Yield Forecasting:**
-   - **Objective:** Develop and train a basic and easy-to-implement machine learning model to **simultaneously forecast short-term weather conditions** (e.g., up to 7 days ahead) **and predict potential impacts on crop yields** based on these forecasts.
+   - **Objective:** Develop and train a basic and easy-to-implement machine learning model to **simultaneously forecast short-term weather conditions** (e.g., up to 7 days ahead) **and predict potential impacts on crop yields** for **almonds** and **tomatoes** based on these forecasts.
    - **Model:** Utilize a **Long Short-Term Memory (LSTM)** model for predicting key weather variables and associating them with crop yield outcomes:
      - **Daily temperature fluctuations** (maximum and minimum temperatures) to anticipate heatwaves or frost events, which can negatively impact yields.
      - **Precipitation patterns** to forecast rain events, helping farmers optimize irrigation schedules and estimate crop water stress levels.
      - **Humidity levels** to predict changes that influence crop growth, such as fungal infections or evaporation rates.
    - **Training Data:**
-     - The model will be trained on **NOAA historical weather data** from 1979 to the present, **OpenWeatherMap real-time data**, and **USDA crop yield data** for almonds, tomatoes, grapes, and lettuce.
+     - The model will be trained on **NOAA historical weather data** from 1979 to the present, **OpenWeatherMap real-time data**, and **USDA crop yield data** for **almonds and tomatoes** in Fresno County.
      - By combining weather predictions with past crop yield data, the model will learn how weather conditions influence yield during key growth phases.
    - **Predictions:**
      - The LSTM model will not only predict short-term weather conditions but will also forecast potential impacts on crop yield based on expected weather changes.
-     - For example, if a heatwave is predicted, the model will forecast the possible reduction in yield for sensitive crops like almonds or lettuce, providing early warnings to farmers.
+     - For example, if a heatwave is predicted, the model will forecast the possible reduction in yield for sensitive crops like **almonds**, providing early warnings to farmers.
 
-4. **Yield Impact Alerts:**
-   - **Objective:** Provide farmers with timely alerts regarding expected changes in crop yield based on predicted weather conditions.
-   - **Implementation:**
-     - The system will send alerts via SMS or email, notifying farmers of potential yield risks caused by upcoming weather conditions (e.g., droughts, excessive heat).
-     - Alerts will include specific details about the forecasted weather and its likely impact on different crops (e.g., "Almond yield is expected to decrease by X% due to predicted high temperatures over the next week").
-
-#### **Possible Geographical Division**
-1. **Coastal Region:**
-- **San Francisco, CA**
-  - **Reason:** San Francisco is well-known for its coastal fog, mild temperatures, and proximity to the Pacific Ocean, making it an ideal location for studying the climate of the coastal region.   - Characterized by mild temperatures, higher humidity, and frequent coastal fog.
-   - Influenced by the Pacific Ocean, with distinct seasonal variations.
-
-2. **Inland Empire:**
-- **Riverside, CA**
-  - **Reason:** Riverside is located in the heart of the Inland Empire, featuring a semi-arid climate with hot summers and cooler winters, and is less influenced by coastal weather patterns.   - Features a semi-arid climate with hotter summers and cooler winters.
-   - Less influenced by coastal weather patterns, leading to more pronounced temperature fluctuations.
-
-3. **Central Valley:**
-- **Fresno, CA**
-  - **Reason:** Fresno is a major city in the Central Valley and represents the region’s hot summers and agricultural significance, as well as its Mediterranean climate with dry summers and wet winters.   - Known for its agricultural productivity and hot summers.
-   - Experiences a Mediterranean climate with dry summers and wet winters.
-
-4. **Mountain Region:**
-- **South Lake Tahoe, CA**
-  - **Reason:** Located in the Sierra Nevada range, South Lake Tahoe experiences cold winters with heavy snowfall, making it a key area for understanding the mountain climate.   - Characterized by colder temperatures and significant snowfall in winter.
-   - Seasonal variations are pronounced, with temperature changes depending on elevation.
-
-5. **Desert Region:**
-- **Palm Springs, CA**
-  - **Reason:** Palm Springs is a well-known desert city with extremely hot summers, mild winters, and minimal precipitation, representing the unique desert climate.   - Features extreme temperatures, with very hot summers and mild winters.
-   - Receives low precipitation and has unique weather patterns compared to other regions.
-
-6. **Northern California:**
-- **Eureka, CA**
-  - **Reason:** Located on the Redwood Coast, Eureka experiences significant seasonal precipitation and diverse microclimates, including coastal fog and inland heat, making it ideal for representing Northern California’s climate.   - Known for its diverse microclimates, from coastal fog to inland heat.
-   - Experiences significant seasonal variation, particularly in precipitation.
-
-7. **Southern California:**
-- **Los Angeles, CA**
-  - **Reason:** Los Angeles is a major city in Southern California, characterized by a warm Mediterranean climate with dry summers and variable weather patterns between coastal and inland areas.   - Characterized by a warm Mediterranean climate with dry summers.
-   - Weather patterns can vary significantly between coastal and inland areas.
-
-Here’s the revised version of the **Expected Major Findings** section, aligning with the new scope of short-term climate prediction and crop yield analysis:
-
----
 
 ## **Expected Major Findings**
 
-In this project, several key findings are anticipated, based on the analysis of historical and real-time weather data, as well as crop yield data. These findings will provide valuable insights into short-term weather patterns, crop yield predictions, and their correlation. Below are the main areas of exploration and the expected outcomes:
+In this project, several key findings are anticipated, based on the analysis of historical and real-time weather data, as well as crop yield data for **Fresno County**. These findings will provide valuable insights into short-term weather patterns, crop yield predictions for **tomatoes** and **almonds**, and their correlation. Below are the main areas of exploration and the expected outcomes:
 
 #### **1. Identification of Short-Term Weather Patterns and Their Impact on Crop Yield**
    - **Expected Finding:** 
-     - Analyze historical weather data to identify short-term weather patterns, such as daily temperature fluctuations, precipitation trends, and humidity variations, particularly during critical crop growing seasons.
-     - Identify how these weather patterns correlate with fluctuations in crop yield for almonds, tomatoes, grapes, and lettuce.
+     - Analyze historical weather data to identify short-term weather patterns, such as daily temperature fluctuations, precipitation trends, and humidity variations, particularly during critical growing seasons for **tomatoes** and **almonds**.
+     - Identify how these weather patterns correlate with fluctuations in crop yield for **tomatoes** and **almonds**.
    - **Value:** 
-     - Improved understanding of how specific weather conditions (e.g., heatwaves, rainfall patterns) affect crop yield, helping farmers optimize agricultural practices based on short-term forecasts.
+     - Improved understanding of how specific weather conditions (e.g., heatwaves, rainfall patterns) affect the yields of **tomatoes** and **almonds**, helping farmers optimize agricultural practices based on short-term forecasts.
 
 #### **2. Development of Accurate Short-Term Weather and Crop Yield Forecasts**
    - **Expected Finding:** 
-     - Develop machine learning models (e.g., LSTM) to provide accurate short-term weather forecasts, including daily predictions for temperature, precipitation, and humidity.
-     - Extend these forecasts to predict how upcoming weather conditions might impact crop yields, using historical correlations between weather patterns and yield outcomes.
+     - Develop machine learning models (e.g., LSTM) to provide accurate short-term weather forecasts, including daily predictions for temperature, precipitation, and humidity in **Fresno County**.
+     - Extend these forecasts to predict how upcoming weather conditions might impact yields of **tomatoes** and **almonds**, using historical correlations between weather patterns and yield outcomes.
    - **Value:** 
-     - Farmers will be able to anticipate short-term weather impacts on crop yield, enabling them to make informed decisions on irrigation, planting, and harvesting to minimize potential losses. For example, if a heatwave is predicted, farmers can take early action to protect crops that are sensitive to temperature extremes.
-
-Here’s the revised version of the **Objective Discussion** section, aligned with your new focus on short-term climate prediction and crop yield analysis:
-
----
+     - Farmers will be able to anticipate short-term weather impacts on **tomato** and **almond** yields, enabling them to make informed decisions on irrigation, planting, and harvesting to minimize potential losses. For example, if a heatwave is predicted, farmers can take early action to protect crops that are sensitive to temperature extremes.
 
 ### **Objective Discussion:**
 
 - **Impact and Utility:**
-  - This project aims to improve **short-term weather forecasts** and provide actionable insights into the correlation between weather conditions and **crop yield** in California. Accurate weather and crop yield predictions will benefit **agriculture** by enabling farmers to optimize irrigation, planting, and harvesting schedules. Additionally, early identification of critical weather conditions (e.g., heatwaves or droughts) will help farmers take timely actions to mitigate crop damage. The project will also provide value by contributing to **agricultural planning** and **disaster preparedness**.
+  - This project aims to improve **short-term weather forecasts** and provide actionable insights into the correlation between weather conditions and **crop yield** for **tomatoes** and **almonds** in **Fresno County**. Accurate weather and crop yield predictions will benefit **agriculture** by enabling farmers to optimize irrigation, planting, and harvesting schedules. Additionally, early identification of critical weather conditions (e.g., heatwaves or droughts) will help farmers take timely actions to mitigate crop damage. The project will also provide value by contributing to **agricultural planning** and **disaster preparedness**.
 
 - **Main Claims and Questions:**
-  - *Claim 1:* The project will accurately predict short-term weather patterns (e.g., temperature and precipitation) using historical and real-time data, enhancing decision-making for farmers and agricultural stakeholders.
-  - *Claim 2:* Machine learning models will provide accurate forecasts for how short-term weather patterns (e.g., heatwaves, rainfall) impact crop yields, validated through historical crop yield data.
+  - *Claim 1:* The project will accurately predict short-term weather patterns (e.g., temperature and precipitation) using historical and real-time data for **Fresno County**, enhancing decision-making for farmers and agricultural stakeholders.
+  - *Claim 2:* Machine learning models will provide accurate forecasts for how short-term weather patterns (e.g., heatwaves, rainfall) impact **tomato** and **almond** yields, validated through historical crop yield data.
   - *Claim 3:* The project will offer early warnings about potential yield losses based on forecasted critical weather conditions, allowing farmers to take preventive actions to protect crops.
 
-  - *Question 1:* How do short-term weather patterns (e.g., temperature fluctuations, precipitation) influence crop yield, and what are the most critical weather variables affecting yield?
-  - *Question 2:* How effective are machine learning models (e.g., LSTM) in predicting short-term weather conditions and their impact on crop yield compared to traditional forecasting methods?
+  - *Question 1:* How do short-term weather patterns (e.g., temperature fluctuations, precipitation) influence **tomato** and **almond** yields, and what are the most critical weather variables affecting these yields?
+  - *Question 2:* How effective are machine learning models (e.g., LSTM) in predicting short-term weather conditions and their impact on **tomato** and **almond** yields compared to traditional forecasting methods?
 
 ## Data Summary and Statistical Analysis
 
