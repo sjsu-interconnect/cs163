@@ -1,38 +1,89 @@
-# app.py
+import dash
+from dash import dcc, html
+from dash.dependencies import Input, Output
+import pandas as pd
+import plotly.graph_objs as go
 
-from flask import Flask, request, jsonify
-from weather_service import WeatherService
+# Load datasets (you would replace these paths with your actual dataset paths)
+crops_data_path = '../data/grouped_fresno_crops.csv'
+weather_data_path = '../data/weather_yearly.csv'
 
-app = Flask(__name__)
+crops_data = pd.read_csv(crops_data_path)
+weather_data = pd.read_csv(weather_data_path)
 
-@app.route('/')
-def home():
-    return "Welcome to the Weather API!"
+# Convert 'date' column to datetime
+weather_data['date'] = pd.to_datetime(weather_data['year'].astype(str), format='%Y')
 
-@app.route('/current-weather', methods=['GET'])
-def get_current_weather():
-    city_name = request.args.get('city_name')
-    lat = request.args.get('lat')
-    lon = request.args.get('lon')
-    
-    if not city_name and (not lat or not lon):
-        return jsonify({"error": "You must provide either a city_name or both lat and lon coordinates."}), 400
+# Get the list of unique cities
+cities = weather_data['city_name'].unique()
 
-    weather_data = WeatherService.get_current_weather(city_name=city_name, lat=lat, lon=lon)
-    return jsonify(weather_data)
+# Initialize Dash app
+app = dash.Dash(__name__)
 
-@app.route('/historical-weather', methods=['GET'])
-def get_historical_weather():
-    lat = request.args.get('lat')
-    lon = request.args.get('lon')
-    start_date = request.args.get('start_date')
-    end_date = request.args.get('end_date')
+# Define layout
+app.layout = html.Div([
+    html.H1("Weather Data Visualization"),
+    dcc.Dropdown(
+        id='city-dropdown',
+        options=[{'label': city, 'value': city} for city in cities],
+        value=cities[0]  # Default value
+    ),
+    dcc.Graph(id='weather-graph'),
+])
 
-    if not lat or not lon or not start_date or not end_date:
-        return jsonify({"error": "Please provide latitude, longitude, start_date, and end_date parameters."}), 400
+# Define callback to update graph
+@app.callback(
+    Output('weather-graph', 'figure'),
+    [Input('city-dropdown', 'value')]
+)
+def update_graph(selected_city):
+    # Filter the dataset for the selected city
+    city_data = weather_data[weather_data['city_name'] == selected_city]
 
-    historical_data = WeatherService.get_historical_weather(lat, lon, start_date, end_date)
-    return jsonify(historical_data)
+    # Create traces for temperature, precipitation, and humidity
+    traces = []
 
+    # Temperature trace
+    traces.append(go.Scatter(
+        x=city_data['date'],
+        y=city_data['temp'],
+        mode='lines',
+        name='Temperature',
+        line=dict(color='orange')
+    ))
+
+    # Precipitation trace (rain_1h)
+    if 'rain_1h' in city_data.columns:
+        traces.append(go.Scatter(
+            x=city_data['date'],
+            y=city_data['rain_1h'].fillna(0),
+            mode='lines',
+            name='Precipitation (1h)',
+            line=dict(color='blue')
+        ))
+
+    # Humidity trace if it exists
+    if 'humidity' in city_data.columns:
+        traces.append(go.Scatter(
+            x=city_data['date'],
+            y=city_data['humidity'],
+            mode='lines',
+            name='Humidity',
+            line=dict(color='green')
+        ))
+
+    # Return the figure
+    return {
+        'data': traces,
+        'layout': go.Layout(
+            title=f'Weather Variables Over Time for {selected_city}',
+            xaxis={'title': 'Date'},
+            yaxis={'title': 'Value'},
+            margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
+            hovermode='closest'
+        )
+    }
+
+# Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run_server(debug=True)
