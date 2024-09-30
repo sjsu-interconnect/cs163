@@ -9,8 +9,8 @@ import base64
 import matplotlib.pyplot as plt
 
 # Load the datasets
-weather_data_path = '../data/weather_yearly.csv'
-monthly_weather_data_path = '../data/weather_monthly.csv'
+weather_data_path = 'data/weather_yearly.csv'
+monthly_weather_data_path = 'data/weather_monthly.csv'
 
 weather_data = pd.read_csv(weather_data_path)
 monthly_weather_data = pd.read_csv(monthly_weather_data_path)
