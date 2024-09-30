@@ -1,1 +1,1 @@
-python src/weather_app.py
+web: python src/weather_app.py
