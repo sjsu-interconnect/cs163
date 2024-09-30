@@ -8,8 +8,8 @@ forecasted changes (positive or negative) in food and beverages price for daily 
 to the calculation of the F&B Price Index, which may result in more accurate result than the traditional method. 
 
 The proposed model will be trained using historical data on monthly national selected average price from the Bureau of Labor Statistics (BLS). Also, Personal Consumption Expenditure Index (PCE) data from
-the Bureau of Economics Analysis (BEA) will also be investigated to gain insights about inflation and customer budget for F&B expenditures. Another source may be included is the crop stock
-data from the US Department of Agriculture (USDA) to provide insights about changes like shortage of supply or over production of agricultural products.
+the Bureau of Economics Analysis (BEA) will also be investigated to gain insights about inflation and customer budget for F&B expenditures. Another source may be included is the received price index
+data from the US Department of Agriculture (USDA) to provide insights about returned that farmers received per an area of crop unit.
 
 
 ## Data Sources
@@ -70,13 +70,15 @@ Split the dataset into training and testing sets, ensuring that the split mainta
 
 The data is available across 236 monthly timeframes from January 2005 until present (August 2024). As a result, there are 236 entries for this data.
 - Statistics:
-![CPI.png](..%2Fsrc%2FCPI.png)
-![CPI ROC.png](..%2Fsrc%2FCPI%20ROC.png)
+![CPI_data.png](..%2Fsrc%2FPlots%2FCPI_data.png)
+![CPI ROC.png](..%2Fsrc%2FPlots%2FCPI%20ROC.png)
+- 
 The CPI seems increased over time throughout the observing period. However, when looking at the rate of changes, we witness a lot of drastic downward movement. We can investigate furthermore on 
 what has happened at those periods of time. However, the mean of rate of change is 0.116, which shows the usual trend of inflation indicator to increase overtime.
 
 ### Food and Beverages Item Price Data:
-![Item Price Availability.png](..%2Fsrc%2FItem%20Price%20Availability.png)
+![item_availability.png](..%2Fsrc%2FPlots%2Fitem_availability.png)
+
 There are 672 series (item categories) that was obtained from the BLS. Due to the seasonal characteristic of food and beverages item, the BLS only selected some specific item to calculate the 
 CPI for Food and Beverages. From 2005 to February 2022, the number of observations was stable at around 20 items per report cycle. However, maybe there was a change in report method from the BLS 
 that decrease the number of observed item to only around 15 in the following periods. So, even though we have 672 series, we can only use around 16 items to calculate the CPI of F&B.
@@ -91,14 +93,15 @@ The data is fully recorded in the period from January 2005 until now (July 2024)
 Other than that, there are 2 PCE indices that relates directly to F&B industry. The total number of observations are 470 with the mean expenditure falls around 9 million dollars per month.
 
 - A quick peak:
-![BEA PCE.png](..%2Fsrc%2FBEA%20PCE.png)
+![pce.png](..%2Fsrc%2FPlots%2Fpce.png)
 
 The general trend is increasing as expected due to the inflation rule. However, in 2020,  which is the COVID-19 period, there is an
 interesting sudden change. We can investigate this change later to see how this affect our CPI index. 
 
-### USDA Stocking Data:
+### USDA RPI Data:
+![RPI Timeseries.png](..%2Fsrc%2FPlots%2FRPI%20Timeseries.png)
 
-**In progress...**
+- The data contains 
 ## Automation, Scalability, and Portability
 <!--- Assume that newer datasets will become available from the same source in the future, or you need to ask your colleague to inherit this project. What will be major challenges? List and explain technical and implementational practices you will use to enhance automation, scalability, and portability aspects of the project. -->
 In the automation aspect, those data will always be published periodically by BLS, BEA, and USDA as they are major figures to monitor the economy. So by creating an automated pipeline, we can 
