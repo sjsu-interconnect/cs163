@@ -54,19 +54,25 @@ def register_callbacks(app, df):
 
         fig_temp.update_layout(title=f'Weather Variables Over Time for {selected_city}', xaxis_title='Date', yaxis_title='Value', xaxis=dict(tickangle=45))
 
-        # Create a seaborn heatmap
-        plt.figure(figsize=(12, 6))
-        
+        # Create a Plotly heatmap for average monthly temperatures
         # Create pivot table for temperature heatmap
         temperature_pivot_city = city_data.pivot_table(values='temp', index=city_data['date'].dt.month, columns=city_data['date'].dt.year)
-        sns.heatmap(temperature_pivot_city, cmap='coolwarm', fmt=".1f")
-        plt.title(f'Heatmap of Average Monthly Temperatures for {selected_city}')
-        plt.xlabel('Year')
-        plt.ylabel('Month')
-        plt.tight_layout()
 
-        heatmap_img = html.Img(src=fig_to_base64(plt.gcf()))
-        plt.close()  # Close the plot to free memory
+        # Generate a Plotly heatmap
+        fig_heatmap = go.Figure(data=go.Heatmap(
+            z=temperature_pivot_city.values,
+            x=temperature_pivot_city.columns,
+            y=temperature_pivot_city.index,
+            colorscale='RdBu',
+            colorbar=dict(title='Temp')
+        ))
+
+        # Update layout for the heatmap
+        fig_heatmap.update_layout(
+            title=f'Heatmap of Average Monthly Temperatures for {selected_city}',
+            xaxis_title='Year',
+            yaxis_title='Month'
+        )
 
         # Create a new Plotly figure for precipitation-only plot
         fig_precipitation = go.Figure()
@@ -81,5 +87,5 @@ def register_callbacks(app, df):
         return html.Div([
             dcc.Graph(figure=fig_temp),      # Time series plot (temperature, precipitation, humidity)
             dcc.Graph(figure=fig_precipitation),  # Precipitation-only plot
-            heatmap_img  # Heatmap image
+            dcc.Graph(figure=fig_heatmap)  # Heatmap of average monthly temperatures
         ])
