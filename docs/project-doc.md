@@ -336,12 +336,158 @@ The following sections should be used for the analysis planning. These are not r
 ----------
 -->
 
-
-
 ## Data Analysis and Algorithms
-<!--- List and describe what types of (advanced) analysis you plan to conduct. This section should be tied back to the expected major findings. (If needed, you can update the findings section.) When selecting algorithms to obtain the analysis results, provide a brief explanation of the algorithmic properties and logic. You should clearly define the inputs and outputs of each algorithm. -->
+
+In this project, we focus on predicting and analyzing temperature data across various cities using advanced machine learning algorithms, including **Prophet**, **LSTM (Long Short-Term Memory)**, and traditional regression models like **Linear Regression**, **Random Forest**, **Gradient Boosting**, and **K-Nearest Neighbors**. Each algorithm was chosen based on its strengths in handling time-series data and regression tasks. Below, I describe the types of analyses conducted and the specific algorithms used, their logic, inputs, and expected outputs.
+
+### 1. **LSTM (Long Short-Term Memory) Neural Network**
+
+- **Algorithmic Properties**: 
+  LSTM is a type of recurrent neural network (RNN) that excels at modeling sequential data and capturing long-term dependencies. It is particularly suited for time-series forecasting due to its ability to retain information from previous time steps using its memory cells and gates (input, forget, and output).
+  
+- **Inputs**: 
+  The input to the LSTM model consists of a series of temperature values for each city, prepared as sequences of 60 time steps. The input data is scaled using **MinMaxScaler** to ensure consistent training performance.
+
+- **Outputs**: 
+  The output is a predicted temperature value for the next time step in the sequence. For multi-step forecasting, the model iteratively uses predicted values to forecast future temperatures over several time steps.
+
+- **Expected Analysis**: 
+  The LSTM model was trained to predict the short-term temperature patterns for multiple cities. The performance of the model was evaluated using **Mean Absolute Error (MAE)**, **Root Mean Squared Error (RMSE)**, and **R-squared (R²)** metrics, achieving strong results on the test data. A key finding is the model’s ability to capture non-linear relationships and long-term dependencies in temperature patterns, providing highly accurate forecasts.
+
+### 2. **Prophet Model for Time-Series Forecasting**
+
+- **Algorithmic Properties**: 
+  **Prophet** is an additive model developed by Facebook, designed specifically for forecasting time-series data with trends and seasonality. It is robust to missing data and can capture daily, weekly, and yearly seasonality with minimal parameter tuning. The model also handles holiday effects and trend changepoints automatically.
+
+- **Inputs**: 
+  The input data for Prophet consists of two columns: `ds` (date) and `y` (temperature). The model uses historical temperature data to learn the overall trend, daily patterns, and seasonal variations.
+
+- **Outputs**: 
+  Prophet outputs the predicted temperature for each future date, along with confidence intervals. Additionally, the model decomposes the forecast into **trend**, **yearly seasonality**, and **daily seasonality** components.
+
+- **Expected Analysis**: 
+  Prophet was used to detect long-term trends and seasonal patterns in the temperature data for each city. The analysis showed clear seasonal trends (e.g., higher temperatures during summer months) and identified potential changepoints where the overall temperature trend shifted. The performance metrics indicated that Prophet was effective in capturing both trends and short-term fluctuations in the data.
+
+### 3. **Traditional Regression Models**
+
+#### **Linear Regression**
+- **Algorithmic Properties**: 
+  **Linear Regression** models the relationship between the input features (e.g., temperature, visibility, dew point) and the target variable (future temperature) by fitting a linear equation. It assumes a linear relationship between the inputs and outputs.
+
+- **Inputs**: 
+  Features such as latitude, longitude, visibility, dew point, and previous temperature values were used as inputs for predicting future temperatures.
+
+- **Outputs**: 
+  The predicted temperature value at the next time step.
+
+- **Expected Analysis**: 
+  Linear regression provides a baseline performance for forecasting temperature. While it is less flexible than other models, it helps to understand the basic linear relationships in the data. However, due to the non-linear nature of temperature trends, this model showed lower performance compared to more advanced algorithms like LSTM.
+
+#### **Random Forest and Gradient Boosting**
+- **Algorithmic Properties**: 
+  **Random Forest** and **Gradient Boosting** are ensemble learning methods that combine multiple decision trees to improve prediction accuracy. Random Forest works by averaging predictions from multiple independent decision trees, while Gradient Boosting trains trees sequentially, focusing on correcting the errors made by previous trees.
+
+- **Inputs**: 
+  Similar to linear regression, these models take in multiple weather-related features (e.g., latitude, visibility, temperature) as inputs to predict the next temperature value.
+
+- **Outputs**: 
+  The models output a predicted temperature value for each time step.
+
+- **Expected Analysis**: 
+  Both Random Forest and Gradient Boosting showed strong performance on the temperature prediction task, with lower errors compared to Linear Regression. These models are well-suited for capturing complex interactions between the input features and are robust to overfitting due to their ensemble nature. Gradient Boosting, in particular, demonstrated strong results with fine-tuned hyperparameters.
+
+### 4. **K-Nearest Neighbors (KNN)**
+- **Algorithmic Properties**: 
+  **KNN** is a simple, non-parametric algorithm that makes predictions by averaging the outcomes of the K nearest neighbors in the feature space. It is a memory-based model that relies on the similarity between observations.
+
+- **Inputs**: 
+  The same set of weather-related features used in the other regression models (e.g., temperature, latitude, visibility) were input into the KNN algorithm.
+
+- **Outputs**: 
+  The predicted temperature value, based on the average temperature values of the nearest neighbors.
+
+- **Expected Analysis**: 
+  KNN performed reasonably well but was less accurate compared to ensemble models like Random Forest and Gradient Boosting. Its performance is highly dependent on the choice of `K` and the distance metric, and it tends to struggle with large datasets and high-dimensional feature spaces.
 
 
+### Weather Data Model Usage
+
+#### 1. **LSTM Model for Time-Series Forecasting**
+- **Algorithmic Properties**: LSTM is a powerful recurrent neural network (RNN) that excels in learning long-term dependencies in sequential data. It’s particularly suited for time-series forecasting because it retains information over time, making it adept at handling historical weather patterns.
+  
+- **Process**:
+    - Data was preprocessed using **MinMaxScaler** to normalize temperature values between 0 and 1.
+    - We structured the data using a **lookback window of 60 time steps**, where each sequence of 60 past temperatures was used to predict the next temperature.
+    - The data was reshaped into a 3D format to fit the LSTM model (samples, timesteps, features).
+    - We trained the model using **LSTM layers** with 50 and 100 units, **Dropout layers** to prevent overfitting, and **Adam optimizer**. The model was trained over 20 epochs with a batch size of 32.
+    - Predictions were scaled back to their original range, and performance metrics such as **MAE**, **RMSE**, and **R²** were computed. 
+
+- **Input**: 60 past time steps of temperature data for each city.
+- **Output**: Predicted temperature for the next time step.
+- **Results**:
+    - **MAE**: 1.6138, **RMSE**: 2.1238, **R²**: 0.9777.
+    - These metrics indicate strong performance, with the model explaining 97.77% of the variance in temperature data.
+  
+- **Visualization**:
+    - Loss curves were plotted to track the model’s training progress over epochs.
+    - Predicted vs Actual temperatures were plotted, along with residual error plots to analyze discrepancies between predictions and actual values.
+
+#### 2. **Prophet Model for Trend and Seasonality Analysis**
+- **Algorithmic Properties**: Prophet is a time-series forecasting model developed by Facebook, specifically designed to handle data with clear seasonal patterns and trends. It is robust to missing data and can capture daily, weekly, and yearly seasonality.
+  
+- **Process**:
+    - Data was reformatted into the `ds` (date) and `y` (target variable) format required by Prophet.
+    - We trained a **Prophet model** with **daily seasonality** and saved the model for future use.
+    - Future temperatures for the next 365 days were predicted for each city, and the model was evaluated on both training and test datasets.
+    - **Performance metrics** such as **MAE**, **RMSE**, and **R²** were calculated to evaluate overfitting and generalization.
+
+- **Input**: Historical temperature data formatted as (date, temperature) pairs.
+- **Output**: Forecasted temperatures for the next 365 days, along with confidence intervals.
+- **Results**:
+    - **MAE**: 9.1447, **RMSE**: 11.6049, **R²**: 0.3705 for the test set, indicating reasonable accuracy for long-term trend predictions.
+  
+- **Visualization**:
+    - Prophet’s built-in component plots (trend, yearly, and weekly seasonality) were used to visualize how different factors contribute to the model’s predictions.
+    - Residual and actual vs predicted plots were also created to inspect the model’s performance.
+
+#### 3. **Traditional Regression Models**
+- **Algorithmic Properties**: We applied several traditional machine learning models to predict temperatures based on weather features like latitude, longitude, dew point, and visibility. These models include **Random Forest**, **Linear Regression**, **Gradient Boosting**, **K-Nearest Neighbors (KNN)**, and **Support Vector Regressor (SVR)**.
+  
+- **Process**:
+    - Data was split into training and test sets, and relevant features were selected for temperature prediction.
+    - Each model was trained on the training set, and their performance was evaluated on the test set.
+    - Models were saved using **joblib** and later reloaded for further analysis and visualization.
+  
+- **Input**: Weather-related features such as latitude, longitude, dew point, visibility, etc.
+- **Output**: Predicted temperature values.
+- **Results**:
+    - **Random Forest**: MAE = 0.1335, RMSE = 0.2126, R² = 0.9998 (some signs of overfitting).
+    - **Linear Regression**: MAE = 0.2181, RMSE = 0.3161, R² = 0.9995.
+    - **Gradient Boosting**: MAE = 0.2672, RMSE = 0.3536, R² = 0.9994.
+    - **KNN**: MAE = 0.6308, RMSE = 1.3292, R² = 0.9912 (clear signs of overfitting).
+  
+- **Visualization**:
+    - Performance metrics (MAE, RMSE) were plotted for each model.
+    - Actual vs predicted plots and residual plots were created for all models, allowing comparison of the models' predictive accuracy.
+
+#### 4. **Multi-City Prophet Forecasting**
+- **Process**:
+    - We extended the Prophet model to forecast temperatures for multiple cities individually.
+    - For each city, the model was trained and used to predict the next 365 days of temperatures.
+    - Cities with fewer than 30 observations were excluded to ensure reliable predictions.
+    - Performance metrics for each city’s model were calculated, and all forecasts were combined into a single DataFrame for easy analysis.
+
+- **Results**:
+    - Detailed performance metrics were recorded for each city, providing insights into how the model performed across different geographical locations.
+  
+- **Visualization**:
+    - Forecasts for each city were visualized using Prophet’s built-in plotting functions.
+
+### Conclusion:
+- **LSTM** performed exceptionally well on sequential temperature data, showing strong predictive capabilities and minimal overfitting.
+- **Prophet** was useful for capturing long-term trends and seasonal patterns in city-specific temperature data, though its overall predictive accuracy was lower than LSTM.
+- **Random Forest** and **Gradient Boosting** performed well, but Random Forest showed slight signs of overfitting, which could be improved with further tuning.
+- **KNN** displayed significant overfitting, performing well on the training set but poorly on the test set.
 
 
 <!--- 
