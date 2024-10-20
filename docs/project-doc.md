@@ -489,6 +489,47 @@ In this project, we focus on predicting and analyzing temperature data across va
 - **Random Forest** and **Gradient Boosting** performed well, but Random Forest showed slight signs of overfitting, which could be improved with further tuning.
 - **KNN** displayed significant overfitting, performing well on the training set but poorly on the test set.
 
+### Crop Data Model Usage
+
+#### 1. **Data Interpolation**
+The original crop dataset provided yearly data for variables such as "Yield," "Production," and "Harvested Acres." To align this data with the weather dataset that contained daily records, we first interpolated the crop data from yearly to monthly intervals. Using **pandas' resample and interpolate** functions, we created monthly data points for each crop and region, ensuring smoother temporal alignment for future modeling tasks.
+
+**Key Steps:**
+- Converted the "Year" column to a proper datetime format.
+- Resampled the yearly data to monthly intervals.
+- Applied linear interpolation to fill in missing values and generate realistic monthly data points.
+
+#### 2. **Data Merging**
+Next, we merged the interpolated crop data with the weather data based on two key factors: **date** and **location**. In this step, the "Region" in the crop dataset was mapped to the corresponding "city_name" in the weather dataset, allowing us to associate each crop record with weather conditions for the same time and region.
+
+**Key Steps:**
+- Converted the date columns in both datasets to a consistent datetime format.
+- Merged the crop data and weather data using a left join on "date" and "city_name"/"Region."
+- The merged dataset contained both weather variables (e.g., "temp," "visibility") and crop-related variables (e.g., "Yield," "Harvested Acres") for each month and region.
+
+#### 3. **Feature Selection and Machine Learning Models**
+Once the crop and weather data were merged, we aimed to build machine learning models that could predict crop-related variables (such as "Yield" and "Production") based on weather variables (such as "temp," "dew_point," "clouds_all"). We implemented a pipeline that combined **feature selection** with **candidate models** to automate the process of determining the most important weather features and selecting the best predictive model.
+
+**Key Steps:**
+- **Recursive Feature Elimination (RFE)**: Employed RFE to automatically select the best weather-related features for each model.
+- **Candidate Models**: Evaluated multiple regression models, including **Random Forest**, **Gradient Boosting**, and **Linear Regression**.
+- **GridSearchCV**: Used grid search to tune hyperparameters and automatically select the best-performing model.
+- **Model Evaluation**: For each model, we calculated performance metrics such as **Mean Absolute Error (MAE)**, **Root Mean Squared Error (RMSE)**, and **R²** on the test set to evaluate the model’s accuracy.
+
+#### 4. **Model Training and Performance**
+After setting up the pipeline, we trained the models using the weather features as inputs to predict crop-related variables. The feature selection process ensured that only the most relevant weather variables were used in the model. For each model, we optimized hyperparameters using **cross-validation** and selected the best-performing model based on RMSE and R² values.
+
+**Key Metrics:**
+- **MAE**: Measures the average error in the predictions.
+- **RMSE**: Measures the root of the average squared difference between predicted and actual values.
+- **R²**: Indicates how well the model explains the variance in the target variable.
+
+#### Summary of Work:
+- **Interpolated yearly crop data** to monthly intervals to match the granularity of weather data.
+- **Merged crop and weather datasets** based on date and location, creating a unified dataset for modeling.
+- **Automatically selected the best weather features** using Recursive Feature Elimination (RFE).
+- **Evaluated multiple machine learning models** to predict crop-related variables using weather data, ensuring optimal performance using hyperparameter tuning.
+
 
 <!--- 
 ----------
