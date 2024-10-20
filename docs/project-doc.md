@@ -338,197 +338,186 @@ The following sections should be used for the analysis planning. These are not r
 
 ## Data Analysis and Algorithms
 
-In this project, we focus on predicting and analyzing temperature data across various cities using advanced machine learning algorithms, including **Prophet**, **LSTM (Long Short-Term Memory)**, and traditional regression models like **Linear Regression**, **Random Forest**, **Gradient Boosting**, and **K-Nearest Neighbors**. Each algorithm was chosen based on its strengths in handling time-series data and regression tasks. Below, I describe the types of analyses conducted and the specific algorithms used, their logic, inputs, and expected outputs.
-
-### 1. **LSTM (Long Short-Term Memory) Neural Network**
-
-- **Algorithmic Properties**: 
-  LSTM is a type of recurrent neural network (RNN) that excels at modeling sequential data and capturing long-term dependencies. It is particularly suited for time-series forecasting due to its ability to retain information from previous time steps using its memory cells and gates (input, forget, and output).
-  
-- **Inputs**: 
-  The input to the LSTM model consists of a series of temperature values for each city, prepared as sequences of 60 time steps. The input data is scaled using **MinMaxScaler** to ensure consistent training performance.
-
-- **Outputs**: 
-  The output is a predicted temperature value for the next time step in the sequence. For multi-step forecasting, the model iteratively uses predicted values to forecast future temperatures over several time steps.
-
-- **Expected Analysis**: 
-  The LSTM model was trained to predict the short-term temperature patterns for multiple cities. The performance of the model was evaluated using **Mean Absolute Error (MAE)**, **Root Mean Squared Error (RMSE)**, and **R-squared (R²)** metrics, achieving strong results on the test data. A key finding is the model’s ability to capture non-linear relationships and long-term dependencies in temperature patterns, providing highly accurate forecasts.
-
-### 2. **Prophet Model for Time-Series Forecasting**
-
-- **Algorithmic Properties**: 
-  **Prophet** is an additive model developed by Facebook, designed specifically for forecasting time-series data with trends and seasonality. It is robust to missing data and can capture daily, weekly, and yearly seasonality with minimal parameter tuning. The model also handles holiday effects and trend changepoints automatically.
-
-- **Inputs**: 
-  The input data for Prophet consists of two columns: `ds` (date) and `y` (temperature). The model uses historical temperature data to learn the overall trend, daily patterns, and seasonal variations.
-
-- **Outputs**: 
-  Prophet outputs the predicted temperature for each future date, along with confidence intervals. Additionally, the model decomposes the forecast into **trend**, **yearly seasonality**, and **daily seasonality** components.
-
-- **Expected Analysis**: 
-  Prophet was used to detect long-term trends and seasonal patterns in the temperature data for each city. The analysis showed clear seasonal trends (e.g., higher temperatures during summer months) and identified potential changepoints where the overall temperature trend shifted. The performance metrics indicated that Prophet was effective in capturing both trends and short-term fluctuations in the data.
-
-### 3. **Traditional Regression Models**
-
-#### **Linear Regression**
-- **Algorithmic Properties**: 
-  **Linear Regression** models the relationship between the input features (e.g., temperature, visibility, dew point) and the target variable (future temperature) by fitting a linear equation. It assumes a linear relationship between the inputs and outputs.
-
-- **Inputs**: 
-  Features such as latitude, longitude, visibility, dew point, and previous temperature values were used as inputs for predicting future temperatures.
-
-- **Outputs**: 
-  The predicted temperature value at the next time step.
-
-- **Expected Analysis**: 
-  Linear regression provides a baseline performance for forecasting temperature. While it is less flexible than other models, it helps to understand the basic linear relationships in the data. However, due to the non-linear nature of temperature trends, this model showed lower performance compared to more advanced algorithms like LSTM.
-
-#### **Random Forest and Gradient Boosting**
-- **Algorithmic Properties**: 
-  **Random Forest** and **Gradient Boosting** are ensemble learning methods that combine multiple decision trees to improve prediction accuracy. Random Forest works by averaging predictions from multiple independent decision trees, while Gradient Boosting trains trees sequentially, focusing on correcting the errors made by previous trees.
-
-- **Inputs**: 
-  Similar to linear regression, these models take in multiple weather-related features (e.g., latitude, visibility, temperature) as inputs to predict the next temperature value.
-
-- **Outputs**: 
-  The models output a predicted temperature value for each time step.
-
-- **Expected Analysis**: 
-  Both Random Forest and Gradient Boosting showed strong performance on the temperature prediction task, with lower errors compared to Linear Regression. These models are well-suited for capturing complex interactions between the input features and are robust to overfitting due to their ensemble nature. Gradient Boosting, in particular, demonstrated strong results with fine-tuned hyperparameters.
-
-### 4. **K-Nearest Neighbors (KNN)**
-- **Algorithmic Properties**: 
-  **KNN** is a simple, non-parametric algorithm that makes predictions by averaging the outcomes of the K nearest neighbors in the feature space. It is a memory-based model that relies on the similarity between observations.
-
-- **Inputs**: 
-  The same set of weather-related features used in the other regression models (e.g., temperature, latitude, visibility) were input into the KNN algorithm.
-
-- **Outputs**: 
-  The predicted temperature value, based on the average temperature values of the nearest neighbors.
-
-- **Expected Analysis**: 
-  KNN performed reasonably well but was less accurate compared to ensemble models like Random Forest and Gradient Boosting. Its performance is highly dependent on the choice of `K` and the distance metric, and it tends to struggle with large datasets and high-dimensional feature spaces.
-
-
 ### Weather Data Model Usage
 
-#### 1. **LSTM Model for Time-Series Forecasting**
-- **Algorithmic Properties**: LSTM is a powerful recurrent neural network (RNN) that excels in learning long-term dependencies in sequential data. It’s particularly suited for time-series forecasting because it retains information over time, making it adept at handling historical weather patterns.
-  
-- **Process**:
-    - Data was preprocessed using **MinMaxScaler** to normalize temperature values between 0 and 1.
-    - We structured the data using a **lookback window of 60 time steps**, where each sequence of 60 past temperatures was used to predict the next temperature.
-    - The data was reshaped into a 3D format to fit the LSTM model (samples, timesteps, features).
-    - We trained the model using **LSTM layers** with 50 and 100 units, **Dropout layers** to prevent overfitting, and **Adam optimizer**. The model was trained over 20 epochs with a batch size of 32.
-    - Predictions were scaled back to their original range, and performance metrics such as **MAE**, **RMSE**, and **R²** were computed. 
+#### Types of (Advanced) Analysis Conducted:
+This analysis leverages a combination of traditional machine learning techniques and advanced time series models to predict **temperature** and **crop-related outcomes** using **weather data**.
 
-- **Input**: 60 past time steps of temperature data for each city.
-- **Output**: Predicted temperature for the next time step.
-- **Results**:
-    - **MAE**: 1.6138, **RMSE**: 2.1238, **R²**: 0.9777.
-    - These metrics indicate strong performance, with the model explaining 97.77% of the variance in temperature data.
-  
-- **Visualization**:
-    - Loss curves were plotted to track the model’s training progress over epochs.
-    - Predicted vs Actual temperatures were plotted, along with residual error plots to analyze discrepancies between predictions and actual values.
+1. **Data Preprocessing and Feature Selection**:
+   - **Weather data** was preprocessed by selecting relevant features such as **temperature**, **dew point**, **humidity**, and **wind speed**, among others.
+   - Missing values were handled by filling them with the column-wise mean, ensuring the dataset is ready for model training.
+   
+2. **Model Training and Evaluation**:
+   - Several models, including **Random Forest**, **Gradient Boosting**, **Linear Regression**, and **Support Vector Regressor (SVR)**, were trained and evaluated.
+   - The models were assessed based on **Mean Absolute Error (MAE)**, **Mean Squared Error (MSE)**, **Root Mean Squared Error (RMSE)**, and **R²** metrics to understand their performance.
+   - Model training was automated, and the best-performing model was saved for future use.
 
-#### 2. **Prophet Model for Trend and Seasonality Analysis**
-- **Algorithmic Properties**: Prophet is a time-series forecasting model developed by Facebook, specifically designed to handle data with clear seasonal patterns and trends. It is robust to missing data and can capture daily, weekly, and yearly seasonality.
-  
-- **Process**:
-    - Data was reformatted into the `ds` (date) and `y` (target variable) format required by Prophet.
-    - We trained a **Prophet model** with **daily seasonality** and saved the model for future use.
-    - Future temperatures for the next 365 days were predicted for each city, and the model was evaluated on both training and test datasets.
-    - **Performance metrics** such as **MAE**, **RMSE**, and **R²** were calculated to evaluate overfitting and generalization.
+3. **Visualization and Residual Analysis**:
+   - **Actual vs. Predicted** scatter plots were generated for each model, allowing for a visual comparison of model predictions.
+   - **Residual plots** were created to inspect the errors made by the models.
+   - Performance metrics were summarized in a bar plot to provide an easy comparison between models.
 
-- **Input**: Historical temperature data formatted as (date, temperature) pairs.
-- **Output**: Forecasted temperatures for the next 365 days, along with confidence intervals.
-- **Results**:
-    - **MAE**: 9.1447, **RMSE**: 11.6049, **R²**: 0.3705 for the test set, indicating reasonable accuracy for long-term trend predictions.
-  
-- **Visualization**:
-    - Prophet’s built-in component plots (trend, yearly, and weekly seasonality) were used to visualize how different factors contribute to the model’s predictions.
-    - Residual and actual vs predicted plots were also created to inspect the model’s performance.
+4. **Time Series Forecasting with Prophet**:
+   - **Prophet** was used to forecast temperature based on historical weather data. This approach was applied on a **city-by-city** basis.
+   - Performance metrics were computed for each city, allowing us to analyze how accurately the model could predict temperatures for specific locations.
+   - Future predictions were made using Prophet, with visualizations that showed the forecasted temperature trends.
 
-#### 3. **Traditional Regression Models**
-- **Algorithmic Properties**: We applied several traditional machine learning models to predict temperatures based on weather features like latitude, longitude, dew point, and visibility. These models include **Random Forest**, **Linear Regression**, **Gradient Boosting**, **K-Nearest Neighbors (KNN)**, and **Support Vector Regressor (SVR)**.
-  
-- **Process**:
-    - Data was split into training and test sets, and relevant features were selected for temperature prediction.
-    - Each model was trained on the training set, and their performance was evaluated on the test set.
-    - Models were saved using **joblib** and later reloaded for further analysis and visualization.
-  
-- **Input**: Weather-related features such as latitude, longitude, dew point, visibility, etc.
-- **Output**: Predicted temperature values.
-- **Results**:
-    - **Random Forest**: MAE = 0.1335, RMSE = 0.2126, R² = 0.9998 (some signs of overfitting).
-    - **Linear Regression**: MAE = 0.2181, RMSE = 0.3161, R² = 0.9995.
-    - **Gradient Boosting**: MAE = 0.2672, RMSE = 0.3536, R² = 0.9994.
-    - **KNN**: MAE = 0.6308, RMSE = 1.3292, R² = 0.9912 (clear signs of overfitting).
-  
-- **Visualization**:
-    - Performance metrics (MAE, RMSE) were plotted for each model.
-    - Actual vs predicted plots and residual plots were created for all models, allowing comparison of the models' predictive accuracy.
+5. **LSTM for Sequential Data Prediction**:
+   - **Long Short-Term Memory (LSTM)** networks were used to capture sequential dependencies in weather data, particularly to predict temperature.
+   - The LSTM model was trained using sequences of weather data (with a lookback of 60 time steps), and performance metrics such as **MAE**, **RMSE**, and **R²** were calculated to evaluate the predictions.
+   - **Dropout layers** were incorporated in the LSTM model to prevent overfitting.
 
-#### 4. **Multi-City Prophet Forecasting**
-- **Process**:
-    - We extended the Prophet model to forecast temperatures for multiple cities individually.
-    - For each city, the model was trained and used to predict the next 365 days of temperatures.
-    - Cities with fewer than 30 observations were excluded to ensure reliable predictions.
-    - Performance metrics for each city’s model were calculated, and all forecasts were combined into a single DataFrame for easy analysis.
+---
 
-- **Results**:
-    - Detailed performance metrics were recorded for each city, providing insights into how the model performed across different geographical locations.
-  
-- **Visualization**:
-    - Forecasts for each city were visualized using Prophet’s built-in plotting functions.
+### Explanation of Algorithmic Properties and Logic
 
-### Conclusion:
-- **LSTM** performed exceptionally well on sequential temperature data, showing strong predictive capabilities and minimal overfitting.
-- **Prophet** was useful for capturing long-term trends and seasonal patterns in city-specific temperature data, though its overall predictive accuracy was lower than LSTM.
-- **Random Forest** and **Gradient Boosting** performed well, but Random Forest showed slight signs of overfitting, which could be improved with further tuning.
-- **KNN** displayed significant overfitting, performing well on the training set but poorly on the test set.
+#### 1. **Random Forest and Gradient Boosting**:
+   - **Inputs**: Selected weather variables (`temp`, `humidity`, `wind_speed`, etc.).
+   - **Outputs**: Predictions of temperature based on historical weather features.
+   - **Logic**: 
+     - **Random Forest** aggregates predictions from multiple decision trees, reducing variance and improving prediction accuracy.
+     - **Gradient Boosting** iteratively trains models by focusing on correcting errors made by previous models, resulting in improved performance.
+   - **Major Findings**: These models provided robust predictions with minimal overfitting, as seen from their test set performance.
+
+#### 2. **Support Vector Regressor (SVR)**:
+   - **Inputs**: Same weather variables.
+   - **Outputs**: Predictions of temperature.
+   - **Logic**: **SVR** attempts to find the hyperplane that best fits the data points in the feature space, minimizing the error margin for regression.
+   - **Major Findings**: SVR, while accurate, tended to underperform compared to Random Forest and Gradient Boosting due to its sensitivity to outliers.
+
+#### 3. **Prophet Time Series Forecasting**:
+   - **Inputs**: Date (`ds`), temperature values (`y`), and weather features.
+   - **Outputs**: Forecasted temperature values for future dates.
+   - **Logic**: **Prophet** decomposes time-series data into trend and seasonality components, using historical weather patterns to predict future temperatures.
+   - **Major Findings**: The model accurately captured seasonal trends in temperature data and provided reliable forecasts for cities like Fresno.
+
+#### 4. **Long Short-Term Memory (LSTM)**:
+   - **Inputs**: Sequences of weather data (e.g., `temp`, `humidity`).
+   - **Outputs**: Temperature predictions.
+   - **Logic**: **LSTM** networks are designed to capture long-term dependencies in sequential data, making them particularly useful for time-series forecasting. LSTMs use memory cells to store relevant information over time, allowing for the prediction of future values.
+   - **Major Findings**: LSTM models showed strong predictive performance, especially for capturing subtle temporal dependencies in weather data.
+
+---
+
+### Inputs and Outputs for Each Algorithm:
+
+1. **Random Forest, Gradient Boosting, Linear Regression, SVR**:
+   - **Inputs**: Weather features (e.g., temperature, humidity, wind speed, etc.).
+   - **Outputs**: Predictions for the target variable (temperature).
+   - **Major Findings**: Gradient Boosting provided the most accurate predictions, while Random Forest also performed well with reduced overfitting.
+
+2. **Prophet**:
+   - **Inputs**: Date (`ds`), temperature values (`y`), and optional weather regressors.
+   - **Outputs**: Forecasted temperature values.
+   - **Major Findings**: Prophet captured trends and seasonality effectively, making accurate predictions for future temperatures.
+
+3. **LSTM**:
+   - **Inputs**: Sequences of weather data over time.
+   - **Outputs**: Predictions for temperature.
+   - **Major Findings**: LSTM showed good performance in predicting future weather variables by learning from long-term dependencies in sequential weather data.
+
+---
+
+### Expected Major Findings:
+
+- **Traditional Models**: Gradient Boosting and Random Forest are expected to provide accurate temperature predictions based on weather features.
+- **Prophet and LSTM**: Both models will provide robust time-series predictions for temperature, capturing seasonal and trend-based changes in weather patterns.
 
 ### Crop Data Model Usage
 
-#### 1. **Data Interpolation**
-The original crop dataset provided yearly data for variables such as "Yield," "Production," and "Harvested Acres." To align this data with the weather dataset that contained daily records, we first interpolated the crop data from yearly to monthly intervals. Using **pandas' resample and interpolate** functions, we created monthly data points for each crop and region, ensuring smoother temporal alignment for future modeling tasks.
+#### Types of Analysis Conducted:
+1. **Data Preprocessing and Resampling**:
+   - Crop data was **resampled** from yearly to daily intervals using **linear interpolation** to fill in missing data points.
+   - Weather data for **Fresno** was filtered to match the date range of interest (1980-2020) for further analysis and merged with crop data.
 
-**Key Steps:**
-- Converted the "Year" column to a proper datetime format.
-- Resampled the yearly data to monthly intervals.
-- Applied linear interpolation to fill in missing values and generate realistic monthly data points.
+2. **Exploratory Data Analysis (EDA)**:
+   - Time-series plots were generated for each feature in the crop dataset to visually explore relationships over time.
 
-#### 2. **Data Merging**
-Next, we merged the interpolated crop data with the weather data based on two key factors: **date** and **location**. In this step, the "Region" in the crop dataset was mapped to the corresponding "city_name" in the weather dataset, allowing us to associate each crop record with weather conditions for the same time and region.
+3. **Feature Selection and Model Training**:
+   - A **feature selection methodology** was implemented using **Recursive Feature Elimination (RFE)** to automatically select the most relevant weather features for crop prediction.
+   - Several **candidate models** (Gradient Boosting, Linear Regression) were trained using the selected features.
 
-**Key Steps:**
-- Converted the date columns in both datasets to a consistent datetime format.
-- Merged the crop data and weather data using a left join on "date" and "city_name"/"Region."
-- The merged dataset contained both weather variables (e.g., "temp," "visibility") and crop-related variables (e.g., "Yield," "Harvested Acres") for each month and region.
+4. **Time Series Forecasting**:
+   - Two advanced time series models, **Prophet** and **LSTM**, were applied to the dataset to capture the temporal dynamics between weather and crop variables over time.
 
-#### 3. **Feature Selection and Machine Learning Models**
-Once the crop and weather data were merged, we aimed to build machine learning models that could predict crop-related variables (such as "Yield" and "Production") based on weather variables (such as "temp," "dew_point," "clouds_all"). We implemented a pipeline that combined **feature selection** with **candidate models** to automate the process of determining the most important weather features and selecting the best predictive model.
+### Explanation of Algorithmic Properties and Logic
 
-**Key Steps:**
-- **Recursive Feature Elimination (RFE)**: Employed RFE to automatically select the best weather-related features for each model.
-- **Candidate Models**: Evaluated multiple regression models, including **Random Forest**, **Gradient Boosting**, and **Linear Regression**.
-- **GridSearchCV**: Used grid search to tune hyperparameters and automatically select the best-performing model.
-- **Model Evaluation**: For each model, we calculated performance metrics such as **Mean Absolute Error (MAE)**, **Root Mean Squared Error (RMSE)**, and **R²** on the test set to evaluate the model’s accuracy.
+#### 1. **Data Preprocessing and Resampling**
+   - **Inputs**: Crop data (Yearly), Weather data (Daily).
+   - **Outputs**: Resampled daily crop data, merged with weather data by matching dates.
+   - **Description**: The crop data was resampled from yearly to daily frequency using linear interpolation, filling missing data points. The weather data was filtered to include only dates and regions relevant to crop analysis.
 
-#### 4. **Model Training and Performance**
-After setting up the pipeline, we trained the models using the weather features as inputs to predict crop-related variables. The feature selection process ensured that only the most relevant weather variables were used in the model. For each model, we optimized hyperparameters using **cross-validation** and selected the best-performing model based on RMSE and R² values.
+#### 2. **Time Series Plots for EDA**
+   - **Inputs**: Resampled daily crop data, weather data.
+   - **Outputs**: Time series plots for each variable.
+   - **Description**: Visual plots were generated for each crop variable to inspect the trends over time and the relationship between weather conditions and crop outcomes.
 
-**Key Metrics:**
-- **MAE**: Measures the average error in the predictions.
-- **RMSE**: Measures the root of the average squared difference between predicted and actual values.
-- **R²**: Indicates how well the model explains the variance in the target variable.
+#### 3. **Feature Selection and Model Training**
+   - **Inputs**: Weather features (`temp`, `humidity`, `wind_speed`, etc.), crop targets (`Yield`, `Production`, `Harvested Acres`).
+   - **Outputs**: Trained models (Random Forest, Gradient Boosting, Linear Regression) with optimal hyperparameters.
+   - **Description**:
+     - Feature selection was performed using **RFE** with **Random Forest** as the base estimator. This method selects the most relevant features for each model.
+     - **GridSearchCV** was used to optimize hyperparameters and select the best-performing model using **cross-validation**.
+     - Each model was evaluated on the test set using performance metrics such as **RMSE** and **R²**.
 
-#### Summary of Work:
-- **Interpolated yearly crop data** to monthly intervals to match the granularity of weather data.
-- **Merged crop and weather datasets** based on date and location, creating a unified dataset for modeling.
-- **Automatically selected the best weather features** using Recursive Feature Elimination (RFE).
-- **Evaluated multiple machine learning models** to predict crop-related variables using weather data, ensuring optimal performance using hyperparameter tuning.
+#### 4. **Prophet Time Series Forecasting**
+   - **Inputs**: Date (`ds`), crop variables (`y`), weather features as additional regressors.
+   - **Outputs**: Time-series forecasts for crop variables, performance metrics (RMSE, R²).
+   - **Description**: 
+     - The **Prophet** model was trained for each crop target (Yield, Production, Harvested Acres) using weather features as external regressors. 
+     - Prophet handles seasonality, trends, and missing data effectively, making it suitable for predicting agricultural variables that vary cyclically over time.
+     - The model was evaluated using standard metrics such as **RMSE** to assess its forecasting ability.
+
+#### 5. **LSTM for Time Series Prediction**
+   - **Inputs**: Sequences of weather data over time (`X`), crop targets (`y`).
+   - **Outputs**: LSTM model predictions, performance metrics (RMSE, R²).
+   - **Description**:
+     - The **LSTM** model was trained using sequences of weather variables, with each sequence predicting future crop yields. LSTMs excel at capturing long-term dependencies in time-series data.
+     - The LSTM architecture included two layers of LSTM units, followed by fully connected layers to output the crop predictions.
+
+### Advanced Algorithms and Logic
+
+#### 1. **Recursive Feature Elimination (RFE)**:
+   - **Logic**: RFE recursively removes the least important features based on the model’s performance, refining the feature set for the next iteration.
+   - **Inputs**: All weather variables (`temp`, `humidity`, `wind_speed`, etc.).
+   - **Outputs**: The best set of features for predicting crop variables.
+   - **Benefits**: RFE ensures that only the most relevant features are used for model training, reducing model complexity and improving performance.
+
+#### 2. **GridSearchCV**:
+   - **Logic**: It performs an exhaustive search over specified hyperparameter values for each model, using cross-validation to find the best combination of hyperparameters.
+   - **Inputs**: Hyperparameter grid, model pipeline.
+   - **Outputs**: The best model with optimized hyperparameters.
+   - **Benefits**: Ensures that the models are tuned for optimal performance by evaluating different hyperparameter configurations.
+
+#### 3. **Prophet**:
+   - **Logic**: Prophet decomposes time-series data into trend, seasonality, and holiday effects while also allowing external regressors (in this case, weather features).
+   - **Inputs**: Time (`ds`), crop target (`y`), weather regressors.
+   - **Outputs**: Time-series forecasts for each crop variable.
+   - **Benefits**: Prophet is robust to missing data and can handle seasonal and trend-based changes in time series, making it highly suitable for agricultural forecasting.
+
+#### 4. **LSTM (Long Short-Term Memory)**:
+   - **Logic**: LSTM networks use memory cells to store information over long periods, capturing temporal dependencies in time-series data.
+   - **Inputs**: Sequences of weather features.
+   - **Outputs**: Predictions for crop variables.
+   - **Benefits**: LSTM is particularly powerful for sequential data like time-series weather and crop data, as it can capture both short- and long-term dependencies.
+
+### Inputs and Outputs for Each Algorithm
+
+1. **Traditional Models (Random Forest, Gradient Boosting, Linear Regression)**:
+   - **Inputs**: Weather features (e.g., temperature, humidity), crop target variables.
+   - **Outputs**: Predictions for crop targets (`Yield`, `Production`, `Harvested Acres`).
+
+2. **Prophet**:
+   - **Inputs**: Date (`ds`), crop targets, weather features as regressors.
+   - **Outputs**: Forecasts for crop targets.
+
+3. **LSTM**:
+   - **Inputs**: Sequences of weather features, crop target variables.
+   - **Outputs**: Predictions for future crop variables.
+
+### Expected Major Findings:
+- **Traditional Models**: Identify the most important weather factors influencing crop yields.
+- **Prophet and LSTM**: Forecast crop production and yield based on weather patterns and trends, providing insights into seasonal variations and long-term weather impacts on agriculture.
 
 
 <!--- 
