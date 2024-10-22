@@ -1,27 +1,42 @@
 # Proposal: Fresno Weather Data Analysis and Forecasting
 
-## **Project Summary: Weather Data Analysis and Forecasting**
+## **Project Summary: Weather and Crop Data Analysis and Forecasting**
 
 ### **Project Goals:**
-The primary goal of this project is to develop a basic and easy-to-implement system for forecasting short-term weather conditions in **Fresno County** and analyzing their correlation to **tomato and almond yields**. The project will apply time series analysis to predict daily weather patterns, such as temperature and precipitation, from **1979 to the present**, focusing on **Fresno County’s crop data**. By examining the relationship between weather and crop yield, the project aims to assist farmers in optimizing planting, irrigation, and harvesting schedules.
+The primary goal of this project is to develop two independent, yet interrelated, systems: 
+1. A forecasting model for short-term weather conditions in **Fresno County**.
+2. A predictive model for **tomato and almond yields**. 
+
+The project will apply time series analysis to forecast **daily weather patterns** such as temperature and precipitation, using data from **1979 to the present**, and develop a model to estimate future crop yields. The goal is to evaluate how weather conditions affect crop production, and simulate potential scenarios that can assist farmers in optimizing planting, irrigation, and harvesting schedules.
 
 ### **Specific Crops and Timeframe:**
 The project will focus on the following crops, selected due to their economic importance in **Fresno** and the availability of historical yield data:
 - **Almonds:** A major crop in Fresno, sensitive to temperature and water availability.
 - **Tomatoes:** Widely grown and sensitive to temperature fluctuations, with high economic value.
 
-The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data for each growing season in the Central California region, which includes Fresno County, and various other ``['Fresno', 'Sacramento', 'San Joaquin', 'Stanislaus', 'Merced', 'Madera', 'Kings', 'Tulare',
-               'Kern', 'Yolo', 'Colusa', 'Sutter', 'Butte', 'Glenn', 'Tehama']``
+The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data, focusing on **Fresno County**, but incorporating relevant insights from other nearby regions when necessary.
 
 ### **Key Features:**
 
-1. **Short-Term Weather Prediction:**
-   - The system will predict daily weather conditions, focusing on key variables such as temperature, precipitation, and humidity, from 1979 to the present.
-   - Time series analysis and simple machine learning models will generate these predictions, helping farmers anticipate weather conditions for upcoming days and plan agricultural activities accordingly.
+1. **Independent Weather Prediction Model:**
+   - A **SARIMA model** will predict daily weather conditions, focusing on key variables such as temperature and precipitation from 1979 to the present.
+   - The system will forecast **future daily weather conditions** for a specific time period (e.g., the next 30 days or years), using advanced time series techniques to generate accurate short-term weather predictions, allowing farmers to plan agricultural activities accordingly.
+   
+2. **Crop Yield Prediction Model:**
+   - A separate **time series model** will predict **future crop yields**, focusing on key crop metrics such as **Harvested Acres**, **Yield**, and **Production** for almonds and tomatoes.
+   - This model will utilize historical crop data combined with relevant weather variables (e.g., lagged temperature and precipitation) to provide insights into future crop productivity.
 
-2. **Correlation with Crop Yield:**
-   - The project will analyze historical crop yield data for **almonds and tomatoes** alongside weather conditions to identify how short-term weather changes (e.g., heatwaves, rainfall) impact crop productivity.
-   - The system will focus on identifying specific correlations between weather variables and crop yields, aiming to provide actionable insights for agricultural planning in Fresno.
+3. **Integration of Weather and Crop Models:**
+   - Although the models for **weather** and **crop yields** are developed independently, the results from the weather prediction model will be used to **simulate different weather scenarios** and observe how they might affect future crop yields.
+   - By adjusting key weather factors (e.g., temperature rise, rainfall variations), the project will demonstrate the impact of potential climate changes on crop productivity in Fresno County.
+
+### **Project Outcome and Usefulness:**
+- The final system will provide **short-term weather forecasts** and **future crop yield predictions**, offering a tool for **scenario-based planning**.
+- Farmers and agricultural planners can use this tool to make informed decisions about when and how to plant, irrigate, and harvest, optimizing their practices based on both weather forecasts and crop yield predictions.
+- By understanding the likely effects of different weather conditions on crop outcomes, the project will help **mitigate risks** associated with temperature and precipitation fluctuations, potentially improving overall agricultural productivity.
+
+The analysis will cover the period from **1979 to the present**, utilizing both historical crop yield data and weather data for each growing season in the Central California region, which includes Fresno County, and various other ``['Fresno', 'Sacramento', 'San Joaquin', 'Stanislaus', 'Merced', 'Madera', 'Kings', 'Tulare',
+               'Kern', 'Yolo', 'Colusa', 'Sutter', 'Butte', 'Glenn', 'Tehama']``
 
 ---
 
@@ -49,54 +64,29 @@ The project will utilize the following key data sources:
    - Data Available: Provides historical crop yield data for **almonds** and **tomatoes** in Fresno County.
    - Timeframe: Crop yield data from 1979 to the present.
 
+
+Here's the revised section based on the new methods and approaches implemented in your project:
+
 ---
-
-### **Key Components:**
-
-1. **Time Series Analysis:**
-   - **Objective:** Analyze historical weather data specific to Fresno from **1979 to the present**, focusing on key variables such as temperature, precipitation, and humidity.
-   - **Techniques:** 
-     - Apply **time series decomposition** to separate the weather data into trend, seasonal, and residual components, helping to identify key patterns.
-     - Focus on understanding short-term weather patterns, particularly during critical growing seasons for **almonds** and **tomatoes**.
-     - Analyze the impact of weather trends on crop yield, such as how extreme temperature fluctuations or insufficient rainfall affect crop productivity.
-
-2. **Correlation Analysis Between Climate and Crop Yield:**
-   - **Objective:** Explore the correlation between short-term weather patterns and crop yield for **almonds** and **tomatoes** in Fresno.
-   - **Techniques:**
-     - Use **Pearson correlation** or **Spearman rank correlation** to assess the relationship between weather variables (e.g., temperature, rainfall) and crop yields.
-     - Identify weather thresholds (e.g., maximum temperature or minimum rainfall) that significantly impact yield during critical phases of crop growth (e.g., flowering, harvesting).
-
-3. **Machine Learning Models for Short-Term Weather Prediction and Crop Yield Forecasting:**
-   - **Objective:** Develop and train a basic and easy-to-implement machine learning model to **simultaneously forecast short-term weather conditions** (e.g., up to 7 days ahead) **and predict potential impacts on crop yields** for **almonds** and **tomatoes** based on these forecasts.
-   - **Model:** Utilize a **Long Short-Term Memory (LSTM)** model for predicting key weather variables and associating them with crop yield outcomes:
-     - **Daily temperature fluctuations** (maximum and minimum temperatures) to anticipate heatwaves or frost events, which can negatively impact yields.
-     - **Precipitation patterns** to forecast rain events, helping farmers optimize irrigation schedules and estimate crop water stress levels.
-     - **Humidity levels** to predict changes that influence crop growth, such as fungal infections or evaporation rates.
-   - **Training Data:**
-     - The model will be trained on **NOAA historical weather data** from 1979 to the present, **OpenWeatherMap real-time data**, and **USDA crop yield data** for **almonds and tomatoes** in Fresno County.
-     - By combining weather predictions with past crop yield data, the model will learn how weather conditions influence yield during key growth phases.
-   - **Predictions:**
-     - The LSTM model will not only predict short-term weather conditions but will also forecast potential impacts on crop yield based on expected weather changes.
-     - For example, if a heatwave is predicted, the model will forecast the possible reduction in yield for sensitive crops like **almonds**, providing early warnings to farmers.
-
 
 ## **Expected Major Findings**
 
-In this project, several key findings are anticipated, based on the analysis of historical and real-time weather data, as well as crop yield data for **Fresno County**. These findings will provide valuable insights into short-term weather patterns, crop yield predictions for **tomatoes** and **almonds**, and their correlation. Below are the main areas of exploration and the expected outcomes:
+In this project, several key findings are anticipated based on the **independent forecasting models** for weather and crop yield data in **Fresno County**. These findings will provide valuable insights into short-term weather patterns, predictions for **tomato** and **almond** yields, and their interactions through scenario testing. Below are the main areas of exploration and the expected outcomes:
 
-#### **1. Identification of Short-Term Weather Patterns and Their Impact on Crop Yield**
+#### **1. Identification of Short-Term Weather Patterns and Scenario Analysis of Their Impact on Crop Yield**
    - **Expected Finding:** 
-     - Analyze historical weather data to identify short-term weather patterns, such as daily temperature fluctuations, precipitation trends, and humidity variations, particularly during critical growing seasons for **tomatoes** and **almonds**.
-     - Identify how these weather patterns correlate with fluctuations in crop yield for **tomatoes** and **almonds**.
+     - Analyze historical weather data using a **SARIMA model** to identify short-term weather patterns, including daily temperature fluctuations and precipitation trends, particularly during critical growing seasons for **tomatoes** and **almonds**.
+     - Simulate various weather scenarios (e.g., hotter-than-usual summers, increased rainfall) and assess how these projected weather conditions could affect the future yields of **tomatoes** and **almonds**.
    - **Value:** 
-     - Improved understanding of how specific weather conditions (e.g., heatwaves, rainfall patterns) affect the yields of **tomatoes** and **almonds**, helping farmers optimize agricultural practices based on short-term forecasts.
+     - This analysis will provide farmers with a deeper understanding of how **specific weather conditions** (e.g., heatwaves, seasonal rainfall) impact the yields of **tomatoes** and **almonds**. By incorporating short-term weather forecasts into scenario analyses, farmers can better optimize their agricultural practices based on potential future weather events.
 
-#### **2. Development of Accurate Short-Term Weather and Crop Yield Forecasts**
+#### **2. Development of Independent Weather and Crop Yield Forecasting Models**
    - **Expected Finding:** 
-     - Develop machine learning models (e.g., LSTM) to provide accurate short-term weather forecasts, including daily predictions for temperature, precipitation, and humidity in **Fresno County**.
-     - Extend these forecasts to predict how upcoming weather conditions might impact yields of **tomatoes** and **almonds**, using historical correlations between weather patterns and yield outcomes.
+     - Develop a **SARIMA model** to provide accurate short-term forecasts of daily weather conditions (temperature and precipitation) for **Fresno County**.
+     - Develop a separate **time series model** for predicting future **tomato** and **almond** yields based on historical trends in harvested acres, yield, and production.
+     - Use the predicted weather data to explore potential **indirect effects** of weather scenarios on crop yields, offering valuable insights into how climate trends may influence agricultural productivity.
    - **Value:** 
-     - Farmers will be able to anticipate short-term weather impacts on **tomato** and **almond** yields, enabling them to make informed decisions on irrigation, planting, and harvesting to minimize potential losses. For example, if a heatwave is predicted, farmers can take early action to protect crops that are sensitive to temperature extremes.
+     - Farmers will be equipped with two complementary tools: **short-term weather forecasts** and **crop yield predictions**, allowing them to make informed decisions regarding irrigation, planting, and harvesting. For example, if a high-temperature trend is forecasted for the summer months, farmers can adjust irrigation schedules or implement strategies to protect heat-sensitive crops, reducing potential yield losses.
 
 ### **Objective Discussion:**
 
