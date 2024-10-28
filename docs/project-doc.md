@@ -166,6 +166,7 @@ The following sections should be used for the analysis outcome presentation. The
 # Analysis Outcomes
 <!--- Explain the analysis you conducted and show the results. Discuss how the data, your analysis, and/or visualization can support the claims or findings. What will be the recommendations or suggestions you can make based on the results? Use bullet points, tables, and figures (if possible) to increase the readability of the document. -->
 
+- 
 
 
 <!--- 
