@@ -5,6 +5,7 @@ from proposal import create_page_proposal
 from processing import create_page_processing
 from app4 import app
 
+application = app.server
 app.config.suppress_callback_exceptions = True
 
 app.layout = html.Div([
