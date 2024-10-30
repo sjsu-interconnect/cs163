@@ -97,7 +97,7 @@ what has happened at those periods of time. However, the mean of difference (t1 
 
 #### Consumer Expenditures:
 
-![Commodity Plot](~/cs163/src/Plots/CE.png)
+![Commodity Plot](src/Plots/CE.png)
 
 - The total compensation of the groups seem to follow a general trend. However, the state and government workers
 group seem to fluctuate very much. This may be explained by the adjustment of presidency and policy of each president. Other than that,
@@ -120,7 +120,7 @@ late 2022. But in general, the PPI of sectors seem to have no influence on each 
 techniques later on.
 
 #### USDA RPI Data:
-![Commodity RPI](~/cs163/src/Plots/Commodity_RPI.png)
+![Commodity RPI](src/Plots/Commodity_RPI.png)
 
 - The data contains Price Received Index of 8 different commodities: aquaculture, livestock, poultry, dairy, field crops, fruit
 & nuts, horticulture, and vegetables. We need to perform imputation on the aquaculture and horticulture indices as they are
