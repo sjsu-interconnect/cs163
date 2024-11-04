@@ -76,19 +76,15 @@ Split the dataset into training and testing sets, ensuring that the split mainta
 The data is available across 236 monthly timeframes from January 2005 until present (August 2024). As a result, there are 236 entries for this data.
 - Statistics:
 
-<img alt="CPI_data.png" src="/Users/eddie/cs163/src/Plots/Original_CPI_and_CCPI.png"/>
+![CPI_data.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/CPI_data.png)
 
-<img alt="CPI vs CCPI plot" src="/Users/eddie/cs163/src/Plots/Differenced_CPI_and_CCPI.png">
-
-- Both CCPI and CPI seem to increase over time throughout the observing period. However, when looking at the rate of changes, we witness a lot of drastic downward movement. We can investigate furthermore on 
-what has happened at those periods of time. However, the mean of difference (t1 - t0) for CPI is 0.116, which shows the usual trend of inflation indicator to increase overtime.
-- Even the two metrics have nearly identical trends, when we plot the differencing, we see that the degree of fluctuation are different. This
-is due to the different in purpose of the metrics. CCPI is used for tracing the consumer's substitution behaviors when the item prices changed while CPI is used for
-indicating change of item prices.
+- CPI seem to increase over time throughout the observing period. However, when looking at the rate of changes, we witness a lot of drastic downward movement.
+We can investigate furthermore on what has happened at those periods of time. However, the mean
+of difference (t1 - t0) for CPI is 0.116, which shows the usual trend of inflation indicator to increase overtime.
 
 ### Consumer Expenditures:
 
-![Commodity Plot](/Users/eddie/cs163/src/Plots/CE.png)
+![Commodity Plot](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/CE.png)
 
 - The total compensation of the groups seem to follow a general trend. However, the state and government workers
 group seem to fluctuate very much. This may be explained by the adjustment of presidency and policy of each president. Other than that,
@@ -96,7 +92,8 @@ The private workers and civilian workers seem to always follow a harmonic trend.
 they are influencing each others for feature selection.
 
 ### Producer Price Index Data:
-<img alt="Commodity Plot" src="/Users/eddie/cs163/src/Plots/Commodity PPI.png">
+
+![Commodity Plot](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/Commodity PPI.png)
 
 - The PPI data was collected among 6 sectors: 
   - Frozen food manufacturing
@@ -111,7 +108,8 @@ late 2022. But in general, the PPI of sectors seem to have no influence on each 
 techniques later on.
 
 ### USDA RPI Data:
-<img alt="Commodity RPI.png" src="/Users/eddie/cs163/src/Plots/Commodity RPI.png"/>
+
+![Commodity RPI.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/Commodity RPI.png)
 
 - The data contains Price Received Index of 8 different commodities: aquaculture, livestock, poultry, dairy, field crops, fruit
 & nuts, horticulture, and vegetables. We need to perform imputation on the aquaculture and horticulture indices as they are
@@ -166,9 +164,148 @@ The following sections should be used for the analysis outcome presentation. The
 # Analysis Outcomes
 <!--- Explain the analysis you conducted and show the results. Discuss how the data, your analysis, and/or visualization can support the claims or findings. What will be the recommendations or suggestions you can make based on the results? Use bullet points, tables, and figures (if possible) to increase the readability of the document. -->
 
-- 
+## Imputation for FOOD FISH and HORTICULTURE RPI data
+- After the imputation, although the distribution of both features remained similar, the data range shifted significantly
 
+![KNN_Imputed_boxplot_for_FOOD FISH.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/KNN_Imputed_boxplot_for_FOOD_FISH.png)
+![KNN_Imputed_boxplot_for_HORTICULTURE TOTALS.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/KNN_Imputed_boxplot_for_HORTICULTURE_TOTALS.png)
 
+There are more outliers appear in the high value range. But, when we compare the imputed values to 
+other RPI using the timeseries line plots, they follow the shift of other RPI closely.
+
+![Imputed_RPI_timeseries.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/Imputed_RPI_timeseries.png)
+
+So, the KNN Imputation can estimate the past values of FOOD FISH and HORTICULTURE RPI very well and successfully filled the NA values.
+
+## Timeseries Analysis for CPI
+### Stationary
+
+![CPI_data.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/CPI_data.png)
+
+Originally, Ad-Fuller test give out a test statistic of 0.75 with p-value of 0.99. This means that we cannot reject the null 
+hypothesis, so there is no stationary in the CPI data. I applied differencing technique on the data with degree 1-4 to
+test out. The result shows that at degree 1, CPI data is already station with p-value of 0.025. So we will proceed with ``d=1``
+
+### Seasonality
+
+To test the seasonality of CPI, I performed SLT Decomposition (Seasonal and Trend decomposition using Loess).
+
+![Seasonality_decomposition.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/Seasonality_decomposition.png)
+
+The decomposition shows that there is a trend in the CPI data and also seasonality by month. When double check it using the plot of true CPI value 
+versus trend + seasonal data from the decomposition, the result is very promising.
+
+![SLT_prediction.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/SLT_prediction.png)
+
+The line can capture the general trend of the change of CPI. For extra information, I performed anamoly detection to identify the irregular changes of
+CPI data in the dataset. 
+
+![Anamolies_detection.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/Anamolies_detection.png)
+
+![Anamolies_points.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/Anamolies_points.png)
+
+The threshold that I used to classify anamolies is:
+```
+lower bound = residual mean - 3 x residual std
+upper = residual mean + 3 x residual std
+```
+Based on the threshold, we notice that there are 3 anomolies points at April 2019, April 2020, and July 2020. 
+- For April 2019, the negative spike can be explained by the impact of Organization of the Petroleum Exporting Countries policies changes 
+earlier in 2019 as well as the tension between US and China on the tariff issue. This change impacted the supply chain, which might have caused the spike.
+- For April 2020, this was the time when COVID-19 spread out on global-scaled and forced US government to issue the lockdown in the whole country. 
+According to the news, people started to panic buy all food and beverages supply due to the concern of a long-lasting epidemic, which increased the CPI index sharply.
+- For July 2020, the CPI spike was ease thanks to the reduced in consumer spending due to the lockdown as well as the assistance programs from the government.
+
+## ARIMA and SARIMAX model
+
+In this step, I will implement Autoregressive Integrated Moving Average (ARIMA) and Seasonal ARIMA with eXongeneous features (SARIMAX) to model the CPI data. Both model
+require 
+- p: Autoregressive lag order
+- d: Difference degree
+- q: Moving Average lag order
+
+Additionally, for SARIMAX, it requires:
+- P: Seasonal autoregressive lag order
+- D: Seasonal difference degree
+- Q: Moving Average lag order
+- S: Seasonal frequency
+
+As our data is monthly, we will use ``S=12``. Moreover, we use ``d=1`` as a result of Ad-Fuller test in the previous part.
+
+### AR lag order and MA lag order
+
+![ACF.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/ACF.png)
+
+![PACF.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/PACF.png)
+
+To identify p and q, I used ACF and PACF plots on CPI data with 1 level of differencing:
+
+- In the ACF plot, we observe a log shape trend in the correlation data.
+After 8 lags, we can see that the correlation started to fall inside the 95% confident interval, which indicates the cutoff. So, I decided to go with lag order of 8 (``q=8``)
+- In the PACF plot, we can see that the cutoff is after lag 2. So, ``p=2`` is chosen. Notably, this plot shows a very interesting trend in correlation at lags that
+are multiplication of 9. This indicate that there is a seasonality correlation every 9 months. So, I switched to ``S=9``
+- For ``P`` and ``Q``, we will use grid search strategy to test out for the model with the best metrics (AIC, BIC, Ljung-Box p-value). The best model is 
+**SARIMAX(1,1,3)(0,1,1)[9]** with
+
+![sarimax_results.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/sarimax_results.png)
+
+Some key results that we can tell from this model:
+
+  - Frozen Food Manufacturing PPI has a coefficient of -0.0500 with a p-value of 0.000, indicating a significant negative impact on the target variable.
+  - Dried and Dehydrated Food Manufacturing PPI is also significant with a positive coefficient (0.0480).
+  - Poultry RPI has a negative coefficient (-0.0075) with a p-value of 0.028, indicating significance as well.
+  - **Ljung-Box Test (Q)**: The result (0.01) and its probability (0.94) indicate that there is no significant autocorrelation in the residuals at lag 1, suggesting the model is well-fitted.
+  - **Jarque-Bera Test (JB)**: A high value (68.12) with a very low probability (0.00) indicates that the residuals are not normally distributed, which may need further examination.
+  - **Heteroskedasticity Test**: The H statistic (1.71) with a significant probability (0.02) suggests that there may be some level of heteroskedasticity in the model.
+
+![SARIMAX_diagnosis.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/SARIMAX_diagnosis.png)
+
+Since the data is relatively small, I retest the normality of the predicted CPI with Shapiro-Wilks test. However, the p-value received is way less than 0.05.
+So, there is normality issue with the model. 
+
+![QQ_plot_of_CPI.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/QQ_plot_of_CPI.png)
+
+The plot shows a non-normal distribution of CPI. This is why the normality of the model is violated. So, I need to try new methods 
+to transform the data to be normalized before retest the data. However, the current SARIMAX already yields very good prediction
+
+![SARIMAX_prediction.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/SARIMAX_prediction.png)
+
+![SARIMAX_prediction_whole_data.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/SARIMAX_prediction_whole_data.png)
+
+### XGBoost Approach
+
+For XGBoost, I used TimeSeriesSplit() to create time-splitting-based cross-validation dataset to feed into the model. I chose ``n_splits=10`` due to
+the small sample size. I also tested other values but 10 gives the best performance in term of MSE and MAE.
+So far, I used GridSearchCV to tune the model and the best model performance is as follows
+
+![MSE_and_MAE_of_best_XGBoost_model.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/MSE_and_MAE_of_best_XGBoost_model.png)
+
+As we can see, the MSE and MAE learning curve does not have a stable trend as expected. Moreover, MSE and MAE on test set is
+very high, which suggest that the model did not capture any trend at all.
+
+![XG_Boost_prediction.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/XG_Boost_prediction.png)
+
+Since XGBoost does not require standardization, it means that the non-normality of CPI is not a factor contributes to the 
+worst performance. Hence, I will try to create Window data of features as well as looking for new way to expand the dataset
+to enhance the performance of the model. 
+
+### Feature ranking
+
+![SHAP_plot.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/SHAP_plot.png)
+
+So far, the PPI indices are the ones that contribute the most to the XGBoost model using SHAPley values. However,
+we cannot tell if this is true yet since the XGBoost model is not working properly. I will conduct this test again
+after XGBoost has been finalized.
+
+However, the huge impact of PPI on CPI is indeed a true fact based on the SARIMAX coefficients. Also based on these coefficient,
+they have negative impact on the CPI value.
+
+![Corr_heatmap.png](https://github.com/EddieNguyen2012/cs163/blob/af3f09d945a33c3db3351765d39696d417104589/src/Plots/Corr_heatmap.png)
+
+Using pairwise correlation, we can also spot the impact clearer with PPI indices impact CPI more than RPI and CE indices. So,
+I expect the completed SHAPley values will also yield similar result.
+
+## Data Visualization Plan 
 <!--- 
 ----------
 The following sections should be used for the visualization planning. These are not required for the analysis outcome presentation.
