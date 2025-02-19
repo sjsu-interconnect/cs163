@@ -76,10 +76,6 @@ San Jose State University
     - Many WSGI servers (e.g., Gunicorn) with which we use to deploy the app expect a server object 
     - Command example: ```gunicorn my_dash_app:server```([reference](https://docs.gunicorn.org/en/stable/run.html#commands))
 
-# Note: PEP 3333 – Python Web Server Gateway Interface (WSGI)
-- 
-- [Deploying Dash Apps](https://dash.plotly.com/deployment)
-
 # 7. Python 3 Runtime Environment in App Engine
 - [reference](https://cloud.google.com/appengine/docs/standard/python3/runtime)
 - The Python runtime for App Engine in the standard environment is declared in [the ```app.yaml``` file](https://cloud.google.com/appengine/docs/standard/python3/configuring-your-app-with-app-yaml)
@@ -94,6 +90,10 @@ San Jose State University
 - When you have all three files (```app4.py```, ```app.yaml```, and ```requirements.txt```), you can deploy the website on Google App Engine
   - ```gcloud app deploy``` on the repository root
 - If you want to disable the app, check [this reference](https://cloud.google.com/appengine/docs/standard/python3/building-app/cleaning-up)
+
+# Reference
+- [Deploying Dash Apps](https://dash.plotly.com/deployment)
+- [My slides on web hosting](https://docs.google.com/presentation/d/1B5WKCexRrfNJI83NlAdh-dnm7kZdMGQkv6sla4aeTec/edit?usp=sharing)
 
 # Note: Google Cloud Free Program
 - [App Engine Free Tier](https://cloud.google.com/free/docs/free-cloud-features#app-engine)
