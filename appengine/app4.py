@@ -9,6 +9,11 @@ df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapmi
 # Initialize the app
 app = Dash()
 
+# the underlying Flask server instance that Dash uses to run the application
+# Many WSGI servers (e.g., Gunicorn, uWSGI) expect a server object.
+# https://dash.plotly.com/deployment
+server = app.server
+
 # App layout
 app.layout = html.Div([
     html.Div(children='My First App with Data, Graph, and Controls'),
