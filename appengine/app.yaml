@@ -2,4 +2,4 @@ runtime: python310
 automatic_scaling:
   target_cpu_utilization: 0.90
   max_instances: 1
-entrypoint: gunicorn -b 0.0.0.0:8080 app4:server
+entrypoint: gunicorn -b :8080 app4:server
