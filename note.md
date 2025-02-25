@@ -143,7 +143,25 @@ San Jose State University
 - check ```app7.py``` for the style template
 - check ```app8.py``` for the layout setup
 
+
+
+# 12. Use Cloud Storage with App Engine
+- [Cloud Storage Reference](https://cloud.google.com/appengine/docs/standard/using-cloud-storage?tab=python)
+- ```gcloud storage ls``` gives you a list of buckets
+- App Engine creates a default bucket when you create an app. This bucket provides the first 5GB of storage for free
+```
+gs://<project-id>.appspot.com/
+gs://staging.<project-id>.appspot.com/ #temporary storage 
+```
+- "We recommend that you store the names of your Cloud Storage buckets in your app's environment variables instead of hard coding them into your app."
+  - [env_variables](https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=python#environment_variables)
+
+- Download objects: [Client Library Reference](https://cloud.google.com/storage/docs/downloading-objects#storage-download-object-python)
+  - [blob.download_as_text](https://cloud.google.com/python/docs/reference/storage/latest/google.cloud.storage.blob.Blob#google_cloud_storage_blob_Blob_download_as_text)
+
+
 # Class 3 - Tasks
 - Create a multi page app template for your final project
 - Apply some designs (basic styles, external css)
 - Plot a few diagrams to show the basic properties of your datasets
+- Check you can use the Cloud Storage to save data files
