@@ -36,6 +36,6 @@ Examples of simple dash apps based on the official document
 ### appengine 
 An example of a dash app for Google App Engine deployment
 
-### pythonanywhere
+### pythonanywhere (Archive)
 An example of hosting a dash app on [pythonanywhere.com](https://www.pythonanywhere.com/)
 

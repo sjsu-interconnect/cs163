@@ -48,11 +48,11 @@
 # 5. Preparing Google App Engine
 - What is Google App Engine?
 1. Create a new project 
-2. ```gcloud projects list``` should return a list of projects
-3. ```gcloud billing accounts list``` gives you a list of billing accounts
-4. Connect a billing account to your project ```gcloud billing projects link <your project name> --billing-account <XXXXXX-XXXXXX-XXXXXX>``` ([reference](https://cloud.google.com/sdk/gcloud/reference/billing))
-5. (On Google Cloud Console,) Enable the App Engine Admin API ([See the Before you begin section](https://cloud.google.com/build/docs/deploying-builds/deploy-appengine))
-6. Initialize the CLI ```gcloud init``` and select the project.
+2. Initialize the CLI ```gcloud init``` and select the project.
+3. ```gcloud projects list``` should return a list of projects
+4. ```gcloud billing accounts list``` gives you a list of billing accounts
+5. Connect a billing account to your project ```gcloud billing projects link <your project name> --billing-account <XXXXXX-XXXXXX-XXXXXX>``` ([reference](https://cloud.google.com/sdk/gcloud/reference/billing))
+6. (On Google Cloud Console,) Enable the App Engine Admin API ([See the Before you begin section](https://cloud.google.com/build/docs/deploying-builds/deploy-appengine))
 
 # 6. Preparing an Dash app for Google App Engine
 1. Create a git-managed directory
@@ -73,6 +73,7 @@
   - [scaling elements](https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=python#scaling_elements)
 - During deployment, App Engine uses the Python package manager ```pip``` to install dependencies defined in the ```requirements.txt``` metadata file located in your project's root directory.
   - If you have configured a Gunicorn web server entrypoint in the ```app.yaml``` file, you must also add ```gunicorn``` to your ```requirements.txt``` file.
+- Make sure you have a sample CSV file in the designated bucket. (cutomers-100-simple.csv should be located under the Google Storage Bucket. The bucket name is specified in ```app.yml```.)
 - When you have all three files (```app4.py```, ```app.yaml```, and ```requirements.txt```), you can deploy the website on Google App Engine
   - ```gcloud app deploy``` on the repository root
 - If you want to disable the app, check [this reference](https://cloud.google.com/appengine/docs/standard/python3/building-app/cleaning-up)
