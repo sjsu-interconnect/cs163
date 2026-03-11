@@ -53,7 +53,7 @@ app.layout = html.Div([
     dcc.Graph(figure={}, id='controls-and-graph'),
     html.Hr(),
     # this is a separate table for google cloud storage demo
-    dash_table.DataTable(data=df2.to_dict('records'), page_size=6) 
+    dash_table.DataTable(data=df.to_dict('records'), page_size=6) 
 ])
 
 # Add controls to build the interaction
