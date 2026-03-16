@@ -1,9 +1,9 @@
 import requests
 import json
 
-url = "https://pchecker-image-611571974386.us-west2.run.app/check_prime"
+url = "http://localhost:8080/predict"
 
-payload = {"number" : 13}
+payload = {"feature1" : 1, "feature2" : 2, "feature3" : 3, "feature4" : 4}
 
 response = requests.post(url, json.dumps(payload))
 
