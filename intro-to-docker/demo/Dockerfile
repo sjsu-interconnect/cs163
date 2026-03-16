@@ -4,10 +4,10 @@ FROM python:3.9
 
 WORKDIR /code
 
-RUN pip install "fastapi[standard]" pydantic
+COPY ./requirements.txt /code/requirements.txt
+RUN pip install --no-cache-dir -r /code/requirements.txt
 
 COPY ./app /code/app
-# local --> container
 
 # Use port 8080
 EXPOSE 8080

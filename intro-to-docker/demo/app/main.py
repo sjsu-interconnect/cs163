@@ -1,25 +1,32 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from model.model import check_prime
+from model.model import predict
 
 app = FastAPI()
 
-# FastAPI uses Pydantic models to validate data.
-class MessageIn(BaseModel):
-    """Input model for integer.
-    FastAPI checks the type of the input."""
-    number: int
+class FeaturesIn(BaseModel):
+    """Input model for features.
+    Accepts 4 float features based on the dummy dataset."""
+    feature1: float
+    feature2: float
+    feature3: float
+    feature4: float
 
-# FastAPI uses Pydantic models to validate data.
-class BoolOut(BaseModel):
-    """Output model for boolean."""
-    is_prime: bool
+class PredictionOut(BaseModel):
+    """Output model for prediction."""
+    prediction: int
 
 @app.get("/")
 def home():
     return {"health_check": "ok"}
 
-@app.post("/check_prime", response_model=BoolOut)
-def check_prime_endpoint(payload: MessageIn):
-    is_prime = check_prime(payload.number) # input
-    return {"is_prime": is_prime}
+@app.post("/predict", response_model=PredictionOut)
+def predict_endpoint(payload: FeaturesIn):
+    features = [
+        payload.feature1, 
+        payload.feature2, 
+        payload.feature3, 
+        payload.feature4
+    ]
+    prediction_result = predict(features)
+    return {"prediction": prediction_result}
